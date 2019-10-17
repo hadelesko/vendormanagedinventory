@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.webjars.npm:validate.js:0.12.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars.npm/validate.js/0.12.0/4bc22db2cde98f36e257e83465987498ee9d92e4/validate.js-0.12.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars.npm/validate.js/0.12.0/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/validate.js-0.12.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
