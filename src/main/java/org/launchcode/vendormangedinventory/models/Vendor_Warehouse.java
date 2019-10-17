@@ -1,3 +1,4 @@
+
 package org.launchcode.vendormangedinventory.models;
 
 
@@ -15,14 +16,43 @@ public class Vendor_Warehouse {
     private long vendor_id;
     private long warehouse_id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getVendor_id() {
+        return vendor_id;
+    }
+
+    public void setVendor_id(long vendor_id) {
+        this.vendor_id = vendor_id;
+    }
+
+    public long getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(long warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
+}
+
 /*    @ManyToOne
     private Product product;
     @NotNull
-    private int quantity_delivered;*/
+    private int quantity_delivered;*//*
 
+
+*/
 /*    @OneToMany
-    private Warehouse destinationWarehouse;*/
+    private Warehouse destinationWarehouse;*//*
+
 
     public Vendor_Warehouse (){}
 
 }
+*/
