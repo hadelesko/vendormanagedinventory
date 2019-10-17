@@ -29,4 +29,44 @@ public class Vendor {
     private List<Warehouse> warehouseList =new ArrayList<>();
 
     public Vendor(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public List<Warehouse> getWarehouseList() {
+        return warehouseList;
+    }
+
+    public void setWarehouseList(List<Warehouse> warehouseList) {
+        this.warehouseList = warehouseList;
+    }
 }

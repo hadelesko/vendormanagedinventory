@@ -1,6 +1,6 @@
 package org.launchcode.vendormangedinventory.models;
 
-import com.sun.istack.internal.NotNull;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
