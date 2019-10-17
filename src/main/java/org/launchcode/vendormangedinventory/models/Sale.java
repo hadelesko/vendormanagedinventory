@@ -1,4 +1,4 @@
-package org.launchcode.vendormangedinventory.models;
+/*package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,10 +8,17 @@ import java.util.Map;
 public class Sale {
     @Id
     @GeneratedValue
-    private  int id;
+    private  long id;
     //@OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<Map<Product,Double>> listProduct=new ArrayList<Map<Product,Double>>();
-    @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne
+    private Product product;
+
+    //mappedBy= "boughtList" refers to the column 'boughtList' in the table "Customer"
+    @OneToMany(mappedBy= "boughtList", fetch= FetchType.EAGER, cascade=CascadeType.ALL)
     private Customer customer;
+
+    //mappedBy= "sale" refers to the column 'sale' in the table "Warehouse"
+    @OneToMany(mappedBy = "sale", fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+    private List<Warehouse>warehouseList;
     public Sale(){}
-}
+}*/

@@ -6,9 +6,9 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String name;
     private double quantity;
-    @OneToMany(fetch= FetchType.EAGER, cascade= CascadeType.ALL)
-    private List<Vendor> listVendor;
+    @OneToMany(fetch= FetchType.EAGER, cascade= CascadeType.ALL , mappedBy ="product")
+    private List<Vendor> vendorList;
 }

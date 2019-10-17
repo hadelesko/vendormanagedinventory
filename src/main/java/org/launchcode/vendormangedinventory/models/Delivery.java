@@ -1,4 +1,4 @@
-package org.launchcode.vendormangedinventory.models;
+/*package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.*;
 import java.lang.reflect.Array;
@@ -16,4 +16,4 @@ public class Delivery {
     private Warehouse destinationWarehouse;
     public Delivery (){}
 
-}
+}*/

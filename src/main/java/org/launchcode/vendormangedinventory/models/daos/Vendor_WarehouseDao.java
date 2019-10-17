@@ -1,11 +1,11 @@
 package org.launchcode.vendormangedinventory.models.daos;
 
-import org.launchcode.vendormangedinventory.models.Product;
+import org.launchcode.vendormangedinventory.models.Delivery;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 @Repository
 @Transactional
-public interface ProductDao extends CrudRepository<Product, Long> {
+public interface Vendor_WarehouseDao extends CrudRepository<Vendor_WarehouseDao, Integer>{
+
 }

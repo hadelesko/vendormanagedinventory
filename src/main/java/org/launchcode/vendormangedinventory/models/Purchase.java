@@ -1,14 +1,21 @@
-package org.launchcode.vendormangedinventory.models;
+/*package org.launchcode.vendormangedinventory.models;
 
-import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.*;
+
 @Entity
-public class Purchase {
-    private  int id;
-    private List<Map<Product,Double>> listProduct=new ArrayList<Map<Product, Double>>();
+public class Purchase{
+    @Id
+    @GeneratedValue
+    private  long id;
+
+    @ManyToOne
+    Product listProduct;
+    @ManyToOne
     private Customer customer;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date purchaseDate;
     public Purchase(){}
 
-}
+}*/

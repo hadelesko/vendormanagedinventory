@@ -1,8 +1,6 @@
 package org.launchcode.vendormangedinventory.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 @Entity
 public class Customer {
@@ -10,6 +8,14 @@ public class Customer {
     @GeneratedValue
     private int id;
     private String name;
-    private String address;
+    @Embedded
+    private Address address;
+
+    
+    /*@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="purchaseId")
     private List<Purchase> listPurchase;
+    @ManyToOne
+    private Sale boughtList;*/
+
 }

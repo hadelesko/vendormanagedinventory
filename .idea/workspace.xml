@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="070d83e7-ac61-4c10-bbf3-bd54cee2231c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor_Warehouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_WarehouseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Sale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/PurchaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/PurchaseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/SaleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/SaleDao.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

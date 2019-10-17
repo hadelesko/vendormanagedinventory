@@ -1,0 +1,147 @@
+// NOTES
+https://en.wikibooks.org/wiki/Java_Persistence/Relationships#Maps
+//https://github.com/eugenp/tutorials/tree/master/persistence-modules/spring-data-jpa-2
+
+Example of a ManyToOne relationship annotations
+
+@Entity
+public class Phone {
+  @Id
+  private long id;
+  ...
+  // Specifies the PHONE table does not contain an owner column, but 
+  // an OWNER_ID column with a foreign key. And creates a join to
+  // lazily fetch the owner
+  @ManyToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="OWNER_ID")
+  private Employee owner;
+  ...
+}
+
+// Specification of the reverse OneToMany relationship in Employee
+@Entity
+public class Employee {
+  @Id
+  private long emp_id;
+  ...
+  // The 'mappedBy = "owner"' attribute specifies that
+  // the 'private Employee owner;' field in Phone owns the
+  // relationship (i.e. contains the foreign key for the query to
+  // find all phones for an employee.)
+  @OneToMany(mappedBy = "owner")
+  private List<Phone> phones;
+  ...
+
+Example of a ManyToOne relationship XML
+
+<entity name="Phone" class="org.acme.Phone" access="FIELD">
+    <attributes>
+        <id name="id"/>
+        <many-to-one name="owner" fetch="LAZY">
+            <join-column name="OWNER_ID"/>
+        </many-to-one>
+    </attributes>
+</entity>
+######################################################################################
+                    QUESTIONS TO THE MENTOR
+######################################################################################
+======================================================================================
+Difference between mappedBy and @joinColumn in OneToMany Relationship
+======================================================================================
+Source:https://www.baeldung.com/hibernate-many-to-many
+======================================================================================
+
+The model classes Employee and Project need to be created with JPA annotations:
+
+@Entity
+@Table(name = "Employee")
+public class Employee {
+    // ...
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Employee_Project",
+        joinColumns = { @JoinColumn(name = "employee_id") },
+        inverseJoinColumns = { @JoinColumn(name = "project_id") }
+    )
+    Set<Project> projects = new HashSet<>();
+
+    // standard constructor/getters/setters
+}
+
+
+@Entity
+@Table(name = "Project")
+public class Project {
+    // ...
+
+    @ManyToMany(mappedBy = "projects")
+    private Set<Employee> employees = new HashSet<>();
+
+    // standard constructors/getters/setters
+}
+
+As we can see, both the Employee class and Project classes refer to one another, which means that the association between them is bidirectional.
+
+In order to map a many-to-many association, we use the @ManyToMany, @JoinTable and @JoinColumn annotations. Let's have a closer look at them.
+
+The @ManyToMany annotation is used in both classes to create the many-to-many relationship between the entities.
+
+This association has two sides i.e. the owning side and the inverse side. In our example, the owning side is Employee so the join table is specified on the owning side by using the @JoinTable annotation in Employee class. The @JoinTable is used to define the join/link table. In this case, it is Employee_Project.
+
+The @JoinColumn annotation is used to specify the join/linking column with the main table. Here, the join column is employee_id and project_id is the inverse join column since Project is on the inverse side of the relationship.
+
+In the Project class, the mappedBy attribute is used in the @ManyToMany annotation to indicate that the employees collection is mapped by the projects collection of the owner side.
+5. Execution
+
+In order to see the many-to-many annotation in action, we can write the following JUnit test:
+
+
+public class HibernateManyToManyAnnotationMainIntegrationTest {
+    private static SessionFactory sessionFactory;
+    private Session session;
+
+    // ...
+
+    @Test
+    public void givenData_whenInsert_thenCreatesMtoMrelationship() {
+        String[] employeeData = { "Peter Oven", "Allan Norman" };
+        String[] projectData = { "IT Project", "Networking Project" };
+        Set<Project> projects = new HashSet<>();
+
+        for (String proj : projectData) {
+            projects.add(new Project(proj));
+        }
+
+        for (String emp : employeeData) {
+            Employee employee = new Employee(emp.split(" ")[0],
+              emp.split(" ")[1]);
+
+            assertEquals(0, employee.getProjects().size());
+            employee.setProjects(projects);
+            session.persist(employee);
+
+            assertNotNull(employee);
+        }
+    }
+
+    @Test
+    public void givenSession_whenRead_thenReturnsMtoMdata() {
+        @SuppressWarnings("unchecked")
+        List<Employee> employeeList = session.createQuery("FROM Employee")
+          .list();
+
+        assertNotNull(employeeList);
+
+        for(Employee employee : employeeList) {
+            assertNotNull(employee.getProjects());
+        }
+    }
+
+    // ...
+}
+
+We can see the many-to-many relationship between the two entities created in the database: the employee, project, and employee_project tables with sample data representing the relationship.
+6. Conclusion
+
+In this tutorial, we saw how to create mappings using Hibernate's many-to-many annotations, which is a more convenient counterpart compared to creating XML mapping files.
