@@ -1,5 +1,6 @@
 package org.launchcode.vendormangedinventory.controllers;
 
+import org.launchcode.vendormangedinventory.models.Address;
 import org.launchcode.vendormangedinventory.models.Warehouse;
 import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ public class WarehouseController {
     public String createWarehouse(Model model) {
         model.addAttribute("tile", "Create new warehouse");
         model.addAttribute(new Warehouse());
+        model.addAttribute(new Address());
         return "warehouse/add";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String addWarehouse(Model model, @ModelAttribute @Valid Warehouse warehouse,
+                               @ModelAttribute @Valid Address address,
                                Errors errors) {
 
         if (errors.hasErrors()) {
