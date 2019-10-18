@@ -1,6 +1,7 @@
 package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Warehouse {
     @Id
     @GeneratedValue
     private int id;
+    @Size(min=5, message="At least 5 characters")
     private String name;
 
     @ManyToMany(mappedBy="warehouseList")
@@ -33,6 +35,7 @@ public class Warehouse {
     private Sale sale;*/
 
     @Embedded
+    @Basic
     private Address address;
     public Warehouse(){}
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${title}">Bank: Assets management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <h1 th:text="${title}">Default Title</h1>
+</head>
+<body>
+<div>
+    <nav th:fragment="navigation_home">
+        <div>
+            <b><a href="/user/add">Add user</a> |</b>
+            <b><a href="/user/removed">Remove user</a> |</b>
+            <b><a href="/operations/">Operations</a> |</b>
+            <b><a href="/User/accounts">User</a> |</b>
+            <b><a href="/user/informations">Informations</a> |</b>
+            <b><a href="/offer/">Marketing</a> |</b>
+            <b><a href="/operations/search">Search oprations</a> |</b>
+            <b><a href="/operations/payment">Payments</a> |</b>
+            <b><a href="/operations/transfer">Transfers</a>|</b>
+            <b><a href="/operations/add">add operations</a>|</b>
+            <b><a href="/operations/removed">Sumarize</a>|</b>
+            <b><a href="/operations/statistics">Statistics</a>|</b>
+        </div>
+    </nav>
+</div>
+<hr/>
+
+<div>
+    <nav th:fragment="navigation_user">
+        <h4>
+            <a href="user">User</a> |
+            <a href="operations">Locations</a> |
+            <a href="statistics">Statistics</a>|
+            <a href="advices">Advices</a> |
+            <a href="information">Information</a> |
+            <a href="Summary">Summary</a>|
+        </h4>
+    </nav>
+</div>
+
+
+<div>
+    <nav th:fragment="navigation_new">
+
+        <h4>
+            <a href="/user/login">Login</a> |
+            <a href="/user/registration">Sign Up</a> |
+        </h4>
+    </nav>
+</div>
+</body>
+</html>

@@ -25,8 +25,14 @@ public class Product {
             joinColumns = { @JoinColumn(name = "product_id") },
             inverseJoinColumns = { @JoinColumn(name = "warehouse_id")})
     private Set<Warehouse> warehouseList=new HashSet<>();
+
     private double price;
+
+    private String description;
+
+
     public Product(){}
+
 
     public long getId() {
         return id;
@@ -82,5 +88,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="070d83e7-ac61-4c10-bbf3-bd54cee2231c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/WarehouseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Customer_Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product_Warehouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Customer_ProductDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Product_WarehouseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/warehouse/add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/warehouse/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" afterDir="false" />
@@ -11,13 +19,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor_Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor_Warehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Warehouse_Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Warehouse_Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_WarehouseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_WarehouseDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Address.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor_Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor_Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse_Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse_Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_WarehouseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_WarehouseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +72,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -75,6 +83,7 @@
   <component name="ProjectId" id="1SIOUEs2w8NIKfbxxGQsQ1a7MsU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
