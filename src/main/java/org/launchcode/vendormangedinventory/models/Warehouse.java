@@ -20,8 +20,8 @@ public class Warehouse {
 
     @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Warehouse_Customer",
-            joinColumns = { @JoinColumn(name = "warehouse_id") },
-            inverseJoinColumns = { @JoinColumn(name = "customer_id")})
+            joinColumns = {@JoinColumn(name = "warehouse_id") },
+            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
     private Set<Customer> customers=new HashSet<Customer>();
 
     /*mappedBy="warehouseList"to refer to the join-table "vendor_warehouse" that means

@@ -10,8 +10,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="warehouse")
@@ -29,13 +31,26 @@ public class WarehouseController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String addWarehouse(Model model, @ModelAttribute @Valid Warehouse warehouse,
-                               @ModelAttribute @Valid Address address,
+                               @ModelAttribute @Valid Address address, @RequestParam Map<String,String>requestParams,
                                Errors errors) {
+
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add new Warehouse");
             return "warehouse/add";
         }
+        address.setEmail(requestParams.get("email"));
+        address.setPassword(requestParams.get("password"));
+        address.setCity(requestParams.get("city"));
+        address.setCountry(requestParams.get("country"));
+        address.setZipCode(requestParams.get("zipCode"));
+        address.setStreet(requestParams.get("street"));
+        address.setPhone(requestParams.get("phone"));
+        address.setFax(requestParams.get("fax"));
+        //model.addAttribute("address", address);
+
+        warehouse.setAddress(address);
+
         warehouseDao.save(warehouse);
         return "warehouse/add";
     }

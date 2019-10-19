@@ -1,6 +1,10 @@
 package org.launchcode.vendormangedinventory.models;
 
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,28 +15,35 @@ public class Product {
     @Id
     @GeneratedValue
     private long id;
+    @Size(min = 5, message = "At least 5 character")
     private String name;
-    private double quantity;
 
-    @OneToMany(mappedBy ="product", fetch= FetchType.EAGER, cascade= CascadeType.ALL )
+    //@Pattern(regexp = "[1-9]+")
+    private int quantity;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Vendor> vendorList;
 
     @ManyToMany(mappedBy = "listBoughtProduct")  // refers to the fields in customer-Table  'listBoughtProduct'
-    private List<Customer> customers=new ArrayList<Customer>();
+    private List<Customer> customers = new ArrayList<Customer>();
 
-    @ManyToMany(cascade={CascadeType.ALL})
-    @JoinTable(name="product_warehouse",
-            joinColumns = { @JoinColumn(name = "product_id") },
-            inverseJoinColumns = { @JoinColumn(name = "warehouse_id")})
-    private Set<Warehouse> warehouseList=new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "product_warehouse",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})
+    private Set<Warehouse> warehouseList = new HashSet<>();
 
+
+    //@Pattern(regexp = "[1-9]*\\.[0-9]{2}")
+    @DecimalMin(value="1.00") @DecimalMax(value="99999.00",  message="must be at least $1 and can not be greater than $99999")
     private double price;
 
+    @NotNull
     private String description;
 
 
-    public Product(){}
-
+    public Product() {
+    }
 
     public long getId() {
         return id;
@@ -50,11 +61,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -97,4 +108,5 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

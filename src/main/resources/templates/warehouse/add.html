@@ -4,7 +4,7 @@
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: navigation_home"></nav>
 <div class="container">
     <form method="POST" style="max-width:600px;" th:object="${warehouse}" action="create">
         <div class="form-group">
@@ -17,47 +17,48 @@
 
         <div class="form-group">
             <label th:for="email">Email</label>
-            <input class ="form-control" th:field="*{email}"/>
+            <input class ="form-control" th:field="*{email}" name="email"/>
             <span th:errors="*{email}"  class ="error"></span>
         </div>
         <div class="form-group">
             <label th:for="password">Password</label>
-            <input class ="form-control" th:field="*{password}"/>
+            <input class ="form-control" th:field="*{password}" name="password"/>
             <span class ="error" th:errors="*{password}"></span>
         </div>
         <div class="form-group">
             <label th:for="city">City</label>
-            <input class ="form-control" th:field="*{city}"/>
+            <input class ="form-control" th:field="*{city}" name="city"/>
             <span class ="error" th:errors="*{city}"></span>
         </div>
         <div class="form-group">
             <label th:for="country">Country</label>
-            <input class ="form-control" th:field="*{country}"/>
+            <input class ="form-control" th:field="*{country}" name="country"/>
             <span class ="error" th:errors="*{country}"></span>
         </div>
         <div class="form-group">
             <label th:for="fax">Fax</label>
-            <input class ="form-control" th:field="*{fax}"/>
+            <input class ="form-control" th:field="*{fax}" name="fax"/>
             <span class ="error" th:errors="*{fax}"></span>
         </div>
         <div class="form-group">
             <label th:for="phone">Phone</label>
-            <input class ="form-control" th:field="*{phone}"/>
+            <input class ="form-control" th:field="*{phone}" name="phone"/>
             <span class ="error" th:errors="*{phone}"></span>
         </div>
         <div class="form-group">
             <label th:for="street">Street</label>
-            <input class ="form-control" th:field="*{street}"/>
+            <input class ="form-control" th:field="*{street}" name="street"/>
             <span class ="error" th:errors="*{street}"></span>
         </div>
         <div class="form-group">
             <label th:for="zipCode">ZipCode</label>
-            <input class ="form-control" th:field="*{zipCode}"/>
+            <input class ="form-control" th:field="*{zipCode}" name="zipCode"/>
             <span class ="error" th:errors="*{zipCode}"></span>
         </div>
         </div>
-        <input type="submit"  class="btn btn-primary" value="Add new object"/>
+        <input type="submit"  class="btn btn-primary" value="Create new warehouse"/>
     </form>
+    <nav th:replace="fragments :: navigation_new"></nav>
 </div>
 </body>
 </html>
