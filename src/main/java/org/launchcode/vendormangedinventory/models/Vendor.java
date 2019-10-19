@@ -1,6 +1,10 @@
 package org.launchcode.vendormangedinventory.models;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +14,8 @@ public class Vendor {
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank
+    @Length(min=5, max=40, message="At least 5 and maximum 40 characters")
     private String name;
     @Embedded
     private Address address;
@@ -24,8 +30,8 @@ public class Vendor {
 
     @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Vendor_Warehouse",
-    joinColumns = {@JoinColumn(name="vendor_id")},
-    inverseJoinColumns = {@JoinColumn(name="warehouse_id")})
+        joinColumns = {@JoinColumn(name="vendor_id")},
+        inverseJoinColumns = {@JoinColumn(name="warehouse_id")})
     private List<Warehouse> warehouseList =new ArrayList<>();
 
     public Vendor(){}
