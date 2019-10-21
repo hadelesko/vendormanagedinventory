@@ -27,8 +27,13 @@ public class Product {
     //@Pattern(regexp = "[1-9]+")
     private int quantity;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Vendor> vendorList;
+    //@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="Vendor_Product",
+                joinColumns = {@JoinColumn(name="vendor_id")},
+                inverseJoinColumns = {@JoinColumn(name="product_id")})
+    private Set<Vendor> vendorList=new HashSet<Vendor>();
 
     @ManyToMany(mappedBy = "listBoughtProduct")  // refers to the fields in customer-Table  'listBoughtProduct'
     private List<Customer> customers = new ArrayList<Customer>();
@@ -75,14 +80,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<Vendor> getVendorList() {
-        return vendorList;
-    }
-
-    public void setVendorList(List<Vendor> vendorList) {
-        this.vendorList = vendorList;
-    }
-
     public List<Customer> getCustomers() {
         return customers;
     }
@@ -122,5 +119,13 @@ public class Product {
 
     public void setPictures(File pictures) {
         this.pictures = pictures;
+    }
+
+    public Set<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(Set<Vendor> vendorList) {
+        this.vendorList = vendorList;
     }
 }

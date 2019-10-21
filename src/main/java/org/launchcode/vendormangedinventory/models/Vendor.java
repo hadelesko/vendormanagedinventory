@@ -24,7 +24,8 @@ public class Vendor {
     @Basic(fetch = FetchType.LAZY)
     private JPEG picture;*/
 
-    @ManyToOne(cascade = CascadeType.REFRESH) @JoinColumn(name = "product_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
     private Product product;
 
     /*One vendor can deliver or store product in one or more warehouses

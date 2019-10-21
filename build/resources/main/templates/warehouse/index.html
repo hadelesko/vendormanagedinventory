@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
 
+<nav th:replace="fragments :: navigation_home"></nav>
+
+<p th:unless="${warehouses}">no warehouse yet recorded in our system !</p>
+<h1> List of the warehouses<h1>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Fax</th>
+                <th>Phone</th>
+                <th>Street</th>
+                <th>ZipCode</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" warehouse : ${warehouses}">
+
+            <td th:text="${warehouse.id}"></td>
+            <td th:text="${warehouse.name}"></td>
+            <td th:text="${warehouse.email}"></td>
+            <td th:text="${warehouse.password}"></td>
+            <td th:text="${warehouse.city}"></td>
+            <td th:text="${warehouse.country}"></td>
+            <td th:text="${warehouse.fax}"></td>
+            <td th:text="${warehouse.phone}"></td>
+            <td th:text="${warehouse.street}"></td>
+            <td th:text="${warehouse.zipCode}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

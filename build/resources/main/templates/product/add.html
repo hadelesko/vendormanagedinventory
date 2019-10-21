@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation_home"></nav>
+<!--<h1 th:text="${title}">Default Title</h1>-->
 <div class="container">
+    <h1 th:text="${title}">Default Title</h1>
     <form method="POST" style="max-width:600px;" th:object="${product}" action="add">
         <div class="form-group">
             <label th:for="name">Name</label>
@@ -32,6 +33,16 @@
             <input class ="browse" th:field="*{pictures}" name="picture" id="fileInput" multiple="multiple" type="file" accept="image/*"/>
             <span class ="error" th:errors="*{pictures}"></span>
         </div>
+        <p>Select one vendor from the list bellow. If this vendor is not in the list select<strong> N/A</strong></p>
+        <select name ="id_of_vendor_of_this_product">
+
+            <option th:value="0" selected="selected"><strong>N/A</strong></option>
+            <option th:each="vendor : ${vendors}"
+                    th:text="${vendor.name}"
+                    th:value="${vendor.id}"> Default Option i
+            </option>
+
+        </select>
 
         <input type="submit"  class="btn btn-primary" value="Add new object"/>
 </form>

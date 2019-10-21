@@ -65,7 +65,8 @@ public class VendorController {
         //model.addAttribute("address", address);
 
         vendor.setAddress(address);
-
+        vendor.setProduct(product); // this allow us to associate the product
+        // to this vendor before saving. Without this setting the column product_id in the table vendor will be 'NULL'
         vendorDao.save(vendor);
         productDao.findOne(productId).getVendorList().add(vendor);
 
