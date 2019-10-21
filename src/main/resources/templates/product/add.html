@@ -27,6 +27,12 @@
             <input class ="form-control" th:field="*{description}" name="description"/>
             <span class ="error" th:errors="*{description}"></span>
         </div>
+        <div class="form-group">
+            <label th:for="pictures">Pictures</label>
+            <input class ="browse" th:field="*{pictures}" name="picture" id="fileInput" multiple="multiple" type="file" accept="image/*"/>
+            <span class ="error" th:errors="*{pictures}"></span>
+        </div>
+
         <input type="submit"  class="btn btn-primary" value="Add new object"/>
 </form>
 </div>

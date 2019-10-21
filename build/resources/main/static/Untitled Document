@@ -145,3 +145,19 @@ We can see the many-to-many relationship between the two entities created in the
 6. Conclusion
 
 In this tutorial, we saw how to create mappings using Hibernate's many-to-many annotations, which is a more convenient counterpart compared to creating XML mapping files.
+
+#####################################################################################################
+If you just want to delete the adress assigned to user and not to affect on User entity class you should try something like that:
+
+@Entity
+public class User {
+   @OneToMany(mappedBy = "adressOwner", cascade = CascadeType.ALL)
+   protected Set<Address> userAddresses = new HashSet<>();
+}
+
+@Entity
+public class Adresses {
+   @ManyToOne(cascade = CascadeType.REFRESH) @JoinColumn(name = "user_id")
+   protected User adressOwner;
+}
+###########################################################################################

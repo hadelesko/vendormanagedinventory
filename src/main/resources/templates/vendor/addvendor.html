@@ -7,55 +7,68 @@
 <nav th:replace="fragments :: navigation_home"></nav>
 
 <div class="container">
-    <form method="POST" style="max-width:600px;" th:object="${vendor}" action="Add new vendor">
-        <div class="form-group">
-            <label th:for="name">Name</label>
-            <input class ="form-control" th:field="*{name}" name="name"/>
-            <span class ="error" th:errors="*{name}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="email">Email</label>
-            <input class ="form-control" th:field="*{email}" name="email"/>
-            <span class ="error" th:errors="*{email}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="password">Password</label>
-            <input class ="form-control" th:field="*{password}" name="password"/>
-            <span class ="error" th:errors="*{password}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="city">City</label>
-            <input class ="form-control" th:field="*{city}" name="city"/>
-            <span class ="error" th:errors="*{city}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="country">Country</label>
-            <input class ="form-control" th:field="*{country}" name="country"/>
-            <span class ="error" th:errors="*{country}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="fax">Fax</label>
-            <input class ="form-control" th:field="*{fax}" name="fax"/>
-            <span class ="error" th:errors="*{fax}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="phone">Phone</label>
-            <input class ="form-control" th:field="*{phone}" name="phone"/>
-            <span class ="error" th:errors="*{phone}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="street">Street</label>
-            <input class ="form-control" th:field="*{street}" name="street"/>
-            <span class ="error" th:errors="*{street}"/></span>
-        </div>
-        <div class="form-group">
-            <label th:for="zipcode">Zipcode</label>
-            <input class ="form-control" th:field="*{zipcode}" name="zipcode"/>
-            <span class ="error" th:errors="*{zipcode}"/></span>
-        </div>
-        <input type="submit"  class="btn btn-primary" value="Add new vendor"/>
-</div>
-</form>
+        <form method="POST" style="max-width:600px;" th:object="${vendor}" action="add">
+            <div class="form-group">
+                <label th:for="name">Name</label>
+                <input class ="form-control" th:field="*{name}" name="name"/>
+                <span class ="error" th:errors="*{name}"></span>
+            </div>
+            <div th:object="${address}" th:field="*{address}">
+                    <div class="form-group">
+                        <label th:for="email">Email</label>
+                        <input class ="form-control" th:field="*{email}" name="email"/>
+                        <span class ="error" th:errors="*{email}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="password">Password</label>
+                        <input class ="form-control" th:field="*{password}" name="password"/>
+                        <span class ="error" th:errors="*{password}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="city">City</label>
+                        <input class ="form-control" th:field="*{city}" name="city"/>
+                        <span class ="error" th:errors="*{city}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="country">Country</label>
+                        <input class ="form-control" th:field="*{country}" name="country"/>
+                        <span class ="error" th:errors="*{country}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="fax">Fax</label>
+                        <input class ="form-control" th:field="*{fax}" name="fax"/>
+                        <span class ="error" th:errors="*{fax}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="phone">Phone</label>
+                        <input class ="form-control" th:field="*{phone}" name="phone"/>
+                        <span class ="error" th:errors="*{phone}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="street">Street</label>
+                        <input class ="form-control" th:field="*{street}" name="street"/>
+                        <span class ="error" th:errors="*{street}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="zipCode">ZipCode</label>
+                        <input class ="form-control" th:field="*{zipCode}" name="zipCode"/>
+                        <span class ="error" th:errors="*{zipCode}"></span>
+                    </div>
+            </div>
+            <div>
+                <select name ="productId">
+                    <option th:each="product : ${products}"
+                            th:text="${product.name}"
+                            th:value="${product.id}"> Default Option i
+                    </option>
+                </select>
+
+                <input type="submit"  class="btn btn-primary" value="Add new object"/>
+
+            </div>
+        </form>
+    <nav th:replace="fragments :: navigation_new"></nav>
+    </div>
 
 </body>
 </html>

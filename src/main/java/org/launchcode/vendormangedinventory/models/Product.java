@@ -1,10 +1,13 @@
 package org.launchcode.vendormangedinventory.models;
 
-import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.NumberFormat;
+
+//import org.hibernate.validator.constraints.Range;
+//import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+//import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +20,9 @@ public class Product {
     private long id;
     @Size(min = 5, message = "At least 5 character")
     private String name;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private File pictures;
 
     //@Pattern(regexp = "[1-9]+")
     private int quantity;
@@ -109,4 +115,12 @@ public class Product {
         this.description = description;
     }
 
+
+    public File getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(File pictures) {
+        this.pictures = pictures;
+    }
 }

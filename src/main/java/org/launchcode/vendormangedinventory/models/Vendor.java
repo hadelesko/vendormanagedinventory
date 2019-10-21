@@ -1,5 +1,6 @@
 package org.launchcode.vendormangedinventory.models;
 
+import com.sun.imageio.plugins.jpeg.JPEG;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -19,8 +20,11 @@ public class Vendor {
     private String name;
     @Embedded
     private Address address;
+/*    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private JPEG picture;*/
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH) @JoinColumn(name = "product_id")
     private Product product;
 
     /*One vendor can deliver or store product in one or more warehouses
