@@ -17,7 +17,7 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     @Size(min = 5, message = "At least 5 character")
     private String name;
     @Lob
@@ -53,14 +53,17 @@ public class Product {
     private String description;
 
 
+    //public Product(String name){}
     public Product() {
     }
 
-    public long getId() {
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

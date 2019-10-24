@@ -1,10 +1,9 @@
 package org.launchcode.vendormangedinventory.controllers;
 
-import org.launchcode.vendormangedinventory.models.Address;
-import org.launchcode.vendormangedinventory.models.Product;
-import org.launchcode.vendormangedinventory.models.Vendor;
+import org.launchcode.vendormangedinventory.models.*;
 import org.launchcode.vendormangedinventory.models.daos.ProductDao;
 import org.launchcode.vendormangedinventory.models.daos.VendorDao;
+import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +27,8 @@ public class VendorController {
     private ProductDao productDao;
     @Autowired
     private VendorDao vendorDao;
+    @Autowired
+    private WarehouseDao warehouseDao;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addProduct(Model model) {
@@ -41,7 +42,7 @@ public class VendorController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String addWarehouse(Model model, @ModelAttribute @Valid Vendor vendor,
                                @ModelAttribute @Valid Address address,
-                               @RequestParam("productId") long productId,
+                               @RequestParam("productId") int productId,
                                @RequestParam Map<String,String> requestParams, Errors errors) {
 
         Product product=productDao.findOne(productId);
@@ -72,6 +73,20 @@ public class VendorController {
 
 
         model.addAttribute("products", productDao.findAll());
-        return "vendor/addvendor";
+
+        // REDIRECT TO THE RECEPTION REGISTRATION AFTER RECORD OR THE NEW VENDOR
+        // For the redirection to product/add, we need to add the following  attributes to the model
+        model.addAttribute("title", "Reception of product");
+        model.addAttribute(new Product());
+        model.addAttribute(new Vendor());
+        model.addAttribute(new Warehouse());
+        model.addAttribute(new Transaction_Vendor_Product_to_or_from_Warehouse());
+        model.addAttribute("notVendorId",0); // this id =0 does not exist. we just give
+        // here to give that to the notVendorId track the case when someone
+        // want to add a product which Vendor is not yet recorded in the system
+        model.addAttribute("vendors", vendorDao.findAll());
+        model.addAttribute("warehouses", warehouseDao.findAll());
+
+        return "redirect:/product/add";
     }
 }

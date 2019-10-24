@@ -35,13 +35,18 @@
         </div>
         <p>Select one vendor from the list bellow. If this vendor is not in the list select<strong> N/A</strong></p>
         <select name ="id_of_vendor_of_this_product">
-
-            <option th:value="0" selected="selected"><strong>N/A</strong></option>
+            <option th:value="${notVendorId}" selected="selected"><strong>N/A</strong></option>
             <option th:each="vendor : ${vendors}"
                     th:text="${vendor.name}"
-                    th:value="${vendor.id}"> Default Option i
+                    th:value="${vendor.id}">
             </option>
 
+        </select>
+        <select name ="destinationWarehouse">
+            <option th:each="warehouse : ${warehouses}"
+                    th:text="${warehouse.name}"
+                    th:value="${warehouse.id}">
+            </option>
         </select>
 
         <input type="submit"  class="btn btn-primary" value="Add new object"/>
