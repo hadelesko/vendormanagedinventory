@@ -8,4 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface WarehouseDao extends CrudRepository<Warehouse, Integer> {
+
+    Warehouse findById(int id);
 }

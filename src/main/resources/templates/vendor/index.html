@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation_home"></nav>
+
+<strong><h2 th:replace="fragments :: title">Default Title</h2></strong>
+
     <p th:unless="${vendors}">no vendor yet recorded in our system !</p>
-    <h1> List of the vendors<h1>
         <div class="container">
             <table class="table table-hover">
                 <thead>
@@ -28,14 +28,14 @@
 
                 <td th:text="${vendor.id}"></td>
                 <td th:text="${vendor.name}"></td>
-                <td th:text="${vendor.email}"></td>
-                <td th:text="${vendor.password}"></td>
-                <td th:text="${vendor.city}"></td>
-                <td th:text="${vendor.country}"></td>
-                <td th:text="${vendor.fax}"></td>
-                <td th:text="${vendor.phone}"></td>
-                <td th:text="${vendor.street}"></td>
-                <td th:text="${vendor.zipCode}"></td>
+                <td th:text="${vendor.address.email}"></td>
+                <td th:text="${vendor.address.password}"></td>
+                <td th:text="${vendor.address.city}"></td>
+                <td th:text="${vendor.address.country}"></td>
+                <td th:text="${vendor.address.fax}"></td>
+                <td th:text="${vendor.address.phone}"></td>
+                <td th:text="${vendor.address.street}"></td>
+                <td th:text="${vendor.address.zipCode}"></td>
                 </tr>
             </table>
         </div>

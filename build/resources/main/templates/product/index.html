@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation_home"></nav>
 
-<p th:unless="${products}">no product yet recorded in our system !</p>
+<br/>
+<h1 th:replace="fragments :: title">Default Title</h1>
 <div class="container">
-    <hi>List of the products</hi>
+
+    <p th:unless="${products}">no product yet recorded in our system !</p>
 
     <table class="table table-striped">
         <thead>
@@ -18,7 +18,7 @@
             <th>Quantity</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Pictures</th>
+<!--            <th>Pictures</th>-->
         </tr>
         </thead>
 
@@ -29,7 +29,6 @@
         <td th:text="${product.quantity}"></td>
         <td th:text="${product.description}"></td>
         <td th:text="${product.price}"></td>
-        <td><img th:src="@{product.pictures}" class="mx-auto d-block" width="100" height="75"/></td>
         </tr>
     </table>
 </div>

@@ -6,7 +6,9 @@
 <nav th:replace="fragments :: navigation_home"></nav>
 <!--<h1 th:text="${title}">Default Title</h1>-->
 <div class="container">
-    <h1 th:text="${title}">Default Title</h1>
+
+    <strong><h2 th:replace="fragments :: title">Default Title</h2></strong>
+
     <form method="POST" style="max-width:600px;" th:object="${product}" action="add">
         <div class="form-group">
             <label th:for="name">Name</label>

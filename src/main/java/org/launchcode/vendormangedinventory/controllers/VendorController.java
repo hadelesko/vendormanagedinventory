@@ -3,6 +3,7 @@ package org.launchcode.vendormangedinventory.controllers;
 import org.launchcode.vendormangedinventory.models.*;
 import org.launchcode.vendormangedinventory.models.daos.ProductDao;
 import org.launchcode.vendormangedinventory.models.daos.VendorDao;
+import org.launchcode.vendormangedinventory.models.daos.Vendor_ProductDao;
 import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +26,29 @@ public class VendorController {
 
     @Autowired
     private ProductDao productDao;
+
     @Autowired
     private VendorDao vendorDao;
     @Autowired
+    private Vendor_ProductDao vendor_productDao;
+
+    @Autowired
     private WarehouseDao warehouseDao;
+
+    @RequestMapping(value="")
+    public String index(Model model){
+        model.addAttribute("title", "List of the vendors");
+        model.addAttribute("vendors",vendorDao.findAll());
+        return "vendor/index";
+    }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addProduct(Model model) {
-        model.addAttribute("tile", "Add vendor");
+        model.addAttribute("title", "Add a new vendor");
         model.addAttribute(new Vendor());
         model.addAttribute(new Address());
+        // To add a new vendor with new product i.e  both vendor and product are new
+       // model.addAttribute("isNotProductId", 0);
         model.addAttribute("products", productDao.findAll());
         return "vendor/addvendor";
     }
@@ -50,7 +64,7 @@ public class VendorController {
                                                             // supplied by this vendor
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add new product");
+            model.addAttribute("title", "Welcome to the vendor managed inventory system . Add new vendor");
             model.addAttribute("products", productDao.findAll());
             return "vendor/addvendor";
         }
@@ -76,16 +90,23 @@ public class VendorController {
 
         // REDIRECT TO THE RECEPTION REGISTRATION AFTER RECORD OR THE NEW VENDOR
         // For the redirection to product/add, we need to add the following  attributes to the model
-        model.addAttribute("title", "Reception of product");
+
+
+/*      model.addAttribute("title", "Reception of product");
         model.addAttribute(new Product());
         model.addAttribute(new Vendor());
         model.addAttribute(new Warehouse());
         model.addAttribute(new Transaction_Vendor_Product_to_or_from_Warehouse());
-        model.addAttribute("notVendorId",0); // this id =0 does not exist. we just give
+        model.addAttribute("notVendorId",0);*/
+
+
+        // this id =0 does not exist. we just give
         // here to give that to the notVendorId track the case when someone
         // want to add a product which Vendor is not yet recorded in the system
-        model.addAttribute("vendors", vendorDao.findAll());
+
+/*      model.addAttribute("vendors", vendorDao.findAll());
         model.addAttribute("warehouses", warehouseDao.findAll());
+        model.addAttribute("title", "Now, you can register the new Reception of product");*/
 
         return "redirect:/product/add";
     }

@@ -21,7 +21,7 @@ public class WarehouseController {
     @Autowired
     private WarehouseDao warehouseDao;
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
+    @RequestMapping(value = {"create", "add"}, method = RequestMethod.GET)
     public String createWarehouse(Model model) {
         model.addAttribute("tile", "Create new warehouse");
         model.addAttribute(new Warehouse());
@@ -29,7 +29,7 @@ public class WarehouseController {
         return "warehouse/add";
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @RequestMapping(value = {"create", "add"}, method = RequestMethod.POST)
     public String addWarehouse(Model model, @ModelAttribute @Valid Warehouse warehouse,
                                @ModelAttribute @Valid Address address, @RequestParam Map<String,String>requestParams,
                                Errors errors) {

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="070d83e7-ac61-4c10-bbf3-bd54cee2231c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Transaction_Vendor_Product_to_or_from_Warehouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_ProductDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_Product_WarehouseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/product/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" afterDir="false" />
@@ -16,24 +14,26 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/VendorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/VendorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor_Product_Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor_Product_Warehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/ProductDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/VendorDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/VendorDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/.~lock.Screenshot from 2019-10-18 10-14-18.png#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/Untitled Document" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/Untitled Document" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/WarehouseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/WarehouseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/WarehouseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/WarehouseDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/fragments.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/fragments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/product/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/product/add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/product/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/product/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/vendor/addvendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/vendor/addvendor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/vendor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/vendor/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/warehouse/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/warehouse/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/warehouse/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/warehouse/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/VendorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/VendorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor_Product_Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor_Product_Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/VendorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/VendorDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/WarehouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/WarehouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/WarehouseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/WarehouseDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product/add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vendor/addvendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vendor/addvendor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vendor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vendor/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/warehouse/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/warehouse/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/warehouse/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/warehouse/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,9 +80,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
