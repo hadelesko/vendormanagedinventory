@@ -9,16 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="vendor")
@@ -89,25 +83,38 @@ public class VendorController {
         model.addAttribute("products", productDao.findAll());
 
         // REDIRECT TO THE RECEPTION REGISTRATION AFTER RECORD OR THE NEW VENDOR
-        // For the redirection to product/add, we need to add the following  attributes to the model
-
-
-/*      model.addAttribute("title", "Reception of product");
-        model.addAttribute(new Product());
-        model.addAttribute(new Vendor());
-        model.addAttribute(new Warehouse());
-        model.addAttribute(new Transaction_Vendor_Product_to_or_from_Warehouse());
-        model.addAttribute("notVendorId",0);*/
-
-
-        // this id =0 does not exist. we just give
-        // here to give that to the notVendorId track the case when someone
-        // want to add a product which Vendor is not yet recorded in the system
-
-/*      model.addAttribute("vendors", vendorDao.findAll());
-        model.addAttribute("warehouses", warehouseDao.findAll());
-        model.addAttribute("title", "Now, you can register the new Reception of product");*/
 
         return "redirect:/product/add";
     }
+    @RequestMapping(value="id={id}")// "name={name}", "warehouse={warehouseId}" })
+    public String editSingleObject(Model model,@PathVariable int id) {
+        List<Vendor> vendors = new ArrayList<>();
+        if (vendorDao.findById(id) == null) {
+            model.addAttribute("title", "Search for vendor with  id =" + id + "  No vendor with the specified id");
+            model.addAttribute("vendors", vendors);
+        } else {
+            vendors.add(vendorDao.findById(id));
+            model.addAttribute("title", "Result of the search for vendor with  id =" + id + " is the following");
+            model.addAttribute("vendors", vendorDao.findById(id));
+        }
+        return "vendor/edit";
+    }
+
+    @RequestMapping(value="name={name}")// "name={name}", "warehouse={warehouseId}" })
+    public String editbyName(Model model,@PathVariable String name) {
+        List<Vendor> vendors = new ArrayList<>();
+        String title="";
+        if (vendorDao.findByName(name) == null) {
+            title="Search for vendor with  id =" + name + "  No vendor with the specified id";
+        } else {
+            vendors.add(vendorDao.findByName(name));
+            title= "Result of the search for vendor with  id =" + name + " is the following";
+
+        }
+        model.addAttribute("title", title);
+        model.addAttribute("vendors", vendors);
+        return "vendor/edit";
+    }
+
+
 }

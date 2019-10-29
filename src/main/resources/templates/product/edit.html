@@ -34,7 +34,7 @@
             <td>
                 <strong th:each="warehouse:${product.warehouseList}">
                     <strong>|</strong>
-                    <a th:href="'/warehouse/id='+${warehouse.id}" th:text="$${warehouse.id}"></a>
+                    <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
                 </strong>
                 <strong>|</strong>
             </td>

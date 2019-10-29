@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation_home"></nav>
+
+<br/>
+<h1 th:replace="fragments :: title">Default Title</h1>
+<div class="container">
+
+    <p th:unless="${vendors}">no vendor yet recorded with the given search criteria!</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Warehouses</th>
+        </tr>
+        </thead>
+
+        <tr th:each="vendor : ${vendors}">
+
+            <td><a th:href="'/vendor/id='+${vendor.id}" th:text="${vendor.id}"></a></td>
+            <td th:text="${vendor.name}"></td>
+            <td th:field="*{vendor.address}">
+                <label th:for="email">Email: </label><i th:text="${vendor.address.email}"></i><br/>
+                <label th:for="city">City: </label><i th:text="${vendor.address.city}"></i><br/>
+                <label th:for="country">Country: </label><i th:text="${vendor.address.country}"></i><br/>
+                <label th:for="fax">Fax: </label><i th:text="${vendor.address.fax}"></i><br/>
+                <label th:for="phone">Phone: </label><i th:text="${vendor.address.phone}"></i><br/>
+                <label th:for="street">Street: </label><i th:text="${vendor.address.street}"></i><br/>
+                <label th:for="zipCode">Zip: </label><i th:text="${vendor.address.zipCode}"></i>
+            </td>
+
+            <td>
+                <strong th:each="warehouse:${vendor.warehouseList}">
+                    <strong>|</strong>
+                    <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
+                </strong>
+                <strong>|</strong>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<!--<div th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></div>-->
+</body>
+</html>

@@ -143,4 +143,19 @@ public class ProductController {
         }
         return "product/edit";
     }
+
+    @RequestMapping(value="name={name}")// "name={name}", "quantity={quantity}", "warehouse={warehouseId}" })
+    public String editbyName(Model model,@PathVariable String name) {
+        List<Product> products = new ArrayList<>();
+        String title="";
+        if (productDao.findByName(name) == null) {
+           title="Search for product with  id =" + name + "  No product with the specified id";
+        } else {
+            products.add(productDao.findByName(name));
+            title= "Result of the search for product with  id =" + name + " is the following";
+        }
+        model.addAttribute("title", title);
+        model.addAttribute("products", products);
+        return "product/edit";
+    }
 }
