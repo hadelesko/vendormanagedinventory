@@ -45,6 +45,10 @@
 
     </table>
 </div>
+<script th:inline="javascript">
+    var number = [[${number}]];
+    var message = "[[${message}]]";
+</script>
 <!--<div th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></div>-->
 </body>
 </html>

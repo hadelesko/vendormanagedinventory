@@ -19,7 +19,7 @@
             <th>Description</th>
             <th>Price</th>
             <th>Warehouses</th>
-            <th>Picture</th>
+<!--        <th>Picture</th>-->
         </tr>
         </thead>
 
@@ -32,13 +32,13 @@
             <td th:text="${product.price}"></td>
 
             <td>
-                <strong th:each="warehouse:${product.warehouseList}">
+                <strong th:each="warehouse:${product.getWarehouseList()}">
                     <strong>|</strong>
                     <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
                 </strong>
                 <strong>|</strong>
             </td>
-            <td><img th:src="@{product.pictures}" class="img-thumbnail" width="250" height="150"/></td>
+            <!--<td><img th:src="@{product.pictures}" class="img-thumbnail" width="250" height="150"/></td>-->
 <!--            <td th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></td>-->
         </tr>
 
