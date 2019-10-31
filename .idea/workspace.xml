@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="070d83e7-ac61-4c10-bbf3-bd54cee2231c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/TransVendorProductWarehouse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.2/fileContent/fileContent.lock" afterDir="false" />
@@ -12,13 +13,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/VendorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/VendorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/WarehouseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/controllers/WarehouseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Transaction_Vendor_Product_to_or_from_Warehouse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/Vendor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_ProductDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_Product_WarehouseDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/launchcode/vendormangedinventory/models/daos/Vendor_Product_WarehouseDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/product/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/product/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/vendor/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/vendor/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/warehouse/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/warehouse/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/VendorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/VendorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/WarehouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/controllers/WarehouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Transaction_Vendor_Product_to_or_from_Warehouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/Vendor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_ProductDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_Product_WarehouseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/launchcode/vendormangedinventory/models/daos/Vendor_Product_WarehouseDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vendor/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vendor/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/warehouse/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/warehouse/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

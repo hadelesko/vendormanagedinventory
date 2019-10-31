@@ -2,10 +2,7 @@ package org.launchcode.vendormangedinventory.controllers;
 
 
 import org.launchcode.vendormangedinventory.models.*;
-import org.launchcode.vendormangedinventory.models.daos.ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.VendorDao;
-import org.launchcode.vendormangedinventory.models.daos.Vendor_ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
+import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +27,9 @@ public class ProductController {
     @Autowired
     private WarehouseDao warehouseDao;
 
+    @Autowired
+    private Vendor_Product_WarehouseDao vendor_product_warehouseDao;
+
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("title", "List of the products");
@@ -43,7 +43,7 @@ public class ProductController {
         model.addAttribute(new Product());
         model.addAttribute(new Vendor());
         model.addAttribute(new Warehouse());
-        model.addAttribute(new Transaction_Vendor_Product_to_or_from_Warehouse());
+        model.addAttribute(new TransVendorProductWarehouse());
         model.addAttribute("notVendorId",0); // this id =0 does not exist. we just give
         // here to give that to the notVendorId track the case when someone
         // want to add a product which Vendor is not yet recorded in the system
@@ -84,8 +84,8 @@ public class ProductController {
 
                 }else{
                     //product.getId();
-                    product.getWarehouseList().add(destinationWarehouse);
-
+                    //product.getWarehouseList().add(destinationWarehouse);
+                    //product.setId(product.getId());
                     productDao.save(product);
                 }
                 int productId=productDao.findByName(product.getName()).getId();
@@ -93,16 +93,16 @@ public class ProductController {
                 String description="Reception of product '" +product.getName();
 
                 //Vendor_Product( int vendor_id, int product_id, int quantity, String description, Date transactionsDate)
-                Transaction_Vendor_Product_to_or_from_Warehouse delivery=new Transaction_Vendor_Product_to_or_from_Warehouse();
-                delivery.setVendor_id( id_of_vendor_of_this_product);
-                delivery.setProduct_id(productId);
+                TransVendorProductWarehouse delivery=new TransVendorProductWarehouse();
+                delivery.setVendorId( id_of_vendor_of_this_product);
+                delivery.setProductId(productId);
                 delivery.setQuantity(product.getQuantity());
                 delivery.setDescription(description);
                 delivery.setTransactionsDate(deliveryDate);
-                delivery.setFrom_or_to_warehouse_id(destinationWarehouseId);
+                delivery.setWarehouseId(destinationWarehouseId);
                 delivery.setPrice(product.getPrice());
 
-                product.getWarehouseList().add(destinationWarehouse);
+                //product.getWarehouseList().add(destinationWarehouse);
                 vendor_productDao.save(delivery);
                 return "redirect:";
             }
@@ -137,4 +137,18 @@ public class ProductController {
         model.addAttribute("products", products);
         return "product/edit";
     }
+
+    @RequestMapping(value="vendors/id={productId}")
+    public String editVendorsOfProduct(Model model,@PathVariable int productId){
+        Set<Vendor>vendorsOfThisProduct= new HashSet<Vendor>();
+        Vendor transactionVendor=new Vendor();
+        for(TransVendorProductWarehouse productTrans : vendor_product_warehouseDao.findByProductId(productId)){
+            transactionVendor=vendorDao.findById(productTrans.getVendorId());
+            vendorsOfThisProduct.add(transactionVendor);
+        }
+        model.addAttribute("title", "Vendors of the product with id="+productId+" are the following");
+        model.addAttribute("vendors", vendorsOfThisProduct);
+        return "/vendor/edit";
+    }
+
 }

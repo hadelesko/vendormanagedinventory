@@ -2,7 +2,7 @@ package org.launchcode.vendormangedinventory.controllers;
 
 import org.launchcode.vendormangedinventory.models.Address;
 import org.launchcode.vendormangedinventory.models.Warehouse;
-import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
+import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,25 @@ import java.util.Map;
 @RequestMapping(value="warehouse")
 public class WarehouseController {
     @Autowired
+    private ProductDao productDao;
+
+    @Autowired
+    private VendorDao vendorDao;
+    @Autowired
+    private Vendor_ProductDao vendor_productDao;
+
+    @Autowired
     private WarehouseDao warehouseDao;
+
+    @Autowired
+    private Vendor_Product_WarehouseDao vendor_product_warehouseDao;
+
+    @RequestMapping(value = "")
+    public String index(Model model){
+        model.addAttribute("title", "List of Warehouses");
+        model.addAttribute("warehouses",warehouseDao.findAll());
+        return "warehouse/index";
+    }
 
     @RequestMapping(value = {"create", "add"}, method = RequestMethod.GET)
     public String createWarehouse(Model model) {

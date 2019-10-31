@@ -1,10 +1,7 @@
 package org.launchcode.vendormangedinventory.controllers;
 
 import org.launchcode.vendormangedinventory.models.*;
-import org.launchcode.vendormangedinventory.models.daos.ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.VendorDao;
-import org.launchcode.vendormangedinventory.models.daos.Vendor_ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
+import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +25,9 @@ public class VendorController {
 
     @Autowired
     private WarehouseDao warehouseDao;
+
+    @Autowired
+    private Vendor_Product_WarehouseDao vendor_product_warehouseDao;
 
     @RequestMapping(value="")
     public String index(Model model){
