@@ -138,7 +138,7 @@ public class ProductController {
         return "product/edit";
     }
 
-    @RequestMapping(value="vendors/id={productId}")
+    @RequestMapping(value="vendors/productId={productId}")
     public String editVendorsOfProduct(Model model,@PathVariable int productId){
         Set<Vendor>vendorsOfThisProduct= new HashSet<Vendor>();
         Vendor transactionVendor=new Vendor();
@@ -146,7 +146,7 @@ public class ProductController {
             transactionVendor=vendorDao.findById(productTrans.getVendorId());
             vendorsOfThisProduct.add(transactionVendor);
         }
-        model.addAttribute("title", "Vendors of the product with id="+productId+" are the following");
+        model.addAttribute("title", "Vendors of the product with id="+productId+" : '"+productDao.findById(productId).getName()+"' are the following");
         model.addAttribute("vendors", vendorsOfThisProduct);
         return "/vendor/edit";
     }
