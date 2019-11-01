@@ -115,11 +115,9 @@ public class VendorController {
         model.addAttribute("vendors", vendors);
         return "vendor/edit";
     }
-<<<<<<< HEAD
-    
-=======
+
     // search for partner - warehouses of specific vendor. For example: which warehouses the vendor with id= X deliver product?
-    @RequestMapping(value={"id={vendorId}/warehouses", "{id}/warehouses"})
+    @RequestMapping(value={"id={vendorId}/warehouses", "{vendorId}/warehouses"})
     public String getVendorsWarehouses(Model model, @PathVariable int vendorId){
         Set<Warehouse>deservedWarehouses= new HashSet<Warehouse>();
         Warehouse transactionWarehouse=new Warehouse();
@@ -145,5 +143,5 @@ public class VendorController {
         model.addAttribute("warehouses",deservedWarehouses);
         return "/warehouse/index";
     }
-    
+
 }
