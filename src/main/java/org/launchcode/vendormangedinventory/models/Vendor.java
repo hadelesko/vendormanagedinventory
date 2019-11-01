@@ -25,7 +25,7 @@ public class Vendor {
     private JPEG picture;*/
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id") //we write product in the column product-id of th table vendor
     private Product product;
 
     /*One vendor can deliver or store product in one or more warehouses
@@ -34,7 +34,7 @@ public class Vendor {
     * */
 
     @ManyToMany(cascade={CascadeType.ALL})
-    @JoinTable(name="Vendor_Warehouse",
+    @JoinTable(name="vendor_warehouse",
         joinColumns = {@JoinColumn(name="vendor_id")},
         inverseJoinColumns = {@JoinColumn(name="warehouse_id")})
     private List<Warehouse> warehouseList =new ArrayList<>();

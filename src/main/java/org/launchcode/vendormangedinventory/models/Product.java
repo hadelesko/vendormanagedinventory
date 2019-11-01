@@ -30,7 +30,7 @@ public class Product {
     //@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name="Vendor_Product",
+    @JoinTable(name="vendor_product",
                 joinColumns = {@JoinColumn(name="vendor_id")},
                 inverseJoinColumns = {@JoinColumn(name="product_id")})
     private Set<Vendor> vendorList=new HashSet<Vendor>();
@@ -52,10 +52,7 @@ public class Product {
     @NotNull
     private String description;
 
-
-    //public Product(String name){}
-    public Product() {
-    }
+    public Product() {}
 
 
 

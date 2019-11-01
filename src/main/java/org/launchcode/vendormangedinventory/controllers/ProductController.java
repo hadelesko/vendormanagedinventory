@@ -2,21 +2,16 @@ package org.launchcode.vendormangedinventory.controllers;
 
 
 import org.launchcode.vendormangedinventory.models.*;
-import org.launchcode.vendormangedinventory.models.daos.ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.VendorDao;
-import org.launchcode.vendormangedinventory.models.daos.Vendor_ProductDao;
-import org.launchcode.vendormangedinventory.models.daos.WarehouseDao;
+import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping(value={"product", "item"})
@@ -33,6 +28,9 @@ public class ProductController {
     @Autowired
     private WarehouseDao warehouseDao;
 
+    @Autowired
+    private Vendor_Product_WarehouseDao vendor_product_warehouseDao;
+
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("title", "List of the products");
@@ -46,7 +44,7 @@ public class ProductController {
         model.addAttribute(new Product());
         model.addAttribute(new Vendor());
         model.addAttribute(new Warehouse());
-        model.addAttribute(new Transaction_Vendor_Product_to_or_from_Warehouse());
+        model.addAttribute(new TransVendorProductWarehouse());
         model.addAttribute("notVendorId",0); // this id =0 does not exist. we just give
         // here to give that to the notVendorId track the case when someone
         // want to add a product which Vendor is not yet recorded in the system
@@ -57,11 +55,11 @@ public class ProductController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String addProductProcess(Model model, @ModelAttribute @Valid Product product,
-                               @RequestParam ("id_of_vendor_of_this_product") int id_of_vendor_of_this_product,
-                               @RequestParam("destinationWarehouse") int destinationWarehouseId,
-                               Errors errors) {
+                                    @RequestParam ("id_of_vendor_of_this_product") int id_of_vendor_of_this_product,
+                                    @RequestParam("destinationWarehouse") int destinationWarehouseId,
+                                    Errors errors) {
 
-        List<Warehouse>warehouseListForTheReceivedProduct= (List<Warehouse>) product.getWarehouseList();
+        //Set<Warehouse>warehouseListForTheReceivedProduct= (List<Warehouse>) product.getWarehouseList();
         Warehouse destinationWarehouse=warehouseDao.findById(destinationWarehouseId);
         //String path="";
         if (errors.hasErrors()) {
@@ -70,10 +68,7 @@ public class ProductController {
             return "product/add";
         } else {
             if(id_of_vendor_of_this_product == 0) { // we have no vendor with id=0
-    /*           model.addAttribute("title", "Add the new vendor before adding the product you received");
-                model.addAttribute("products", productDao.findAll());
-                model.addAttribute(new Vendor());
-                model.addAttribute(new Address());*/
+
                 return "redirect:/vendor/add";
             }else {
                 Vendor currentVendor = vendorDao.findById(id_of_vendor_of_this_product);
@@ -90,8 +85,8 @@ public class ProductController {
 
                 }else{
                     //product.getId();
-                    product.getWarehouseList().add(destinationWarehouse);
-                    
+                    //product.getWarehouseList().add(destinationWarehouse);
+                    //product.setId(product.getId());
                     productDao.save(product);
                 }
                 int productId=productDao.findByName(product.getName()).getId();
@@ -99,36 +94,21 @@ public class ProductController {
                 String description="Reception of product '" +product.getName();
 
                 //Vendor_Product( int vendor_id, int product_id, int quantity, String description, Date transactionsDate)
-                Transaction_Vendor_Product_to_or_from_Warehouse delivery=new Transaction_Vendor_Product_to_or_from_Warehouse();
-                delivery.setVendor_id( id_of_vendor_of_this_product);
-                delivery.setProduct_id(productId);
+                TransVendorProductWarehouse delivery=new TransVendorProductWarehouse();
+                delivery.setVendorId( id_of_vendor_of_this_product);
+                delivery.setProductId(productId);
                 delivery.setQuantity(product.getQuantity());
                 delivery.setDescription(description);
                 delivery.setTransactionsDate(deliveryDate);
-                delivery.setFrom_or_to_warehouse_id(destinationWarehouseId);
+                delivery.setWarehouseId(destinationWarehouseId);
                 delivery.setPrice(product.getPrice());
 
-                product.getWarehouseList().add(destinationWarehouse);
+                //product.getWarehouseList().add(destinationWarehouse);
                 vendor_productDao.save(delivery);
                 return "redirect:";
-                }
             }
         }
-/*        @RequestMapping(value={"id={id}", "name={name}", "quantity={quantity}", "warehouse={warehouseId}" })
-        public String editSingleObject(Model model,
-                                       @PathVariable int id, @PathVariable String name,
-                                       @PathVariable int quantity, @PathVariable int warehouseId){
-
-            List<Product>searchTerms=new ArrayList<>();
-            String s_id=String.valueOf(id);
-            String s_name=String.valueOf(name);
-            String s_quantity=String.valueOf(quantity);
-            String s_warehouseId=String.valueOf(warehouseId);
-
-
-
-            model.addAttribute("title","Search for product with ...="+searchTermValue);
-        }*/
+    }
 
     @RequestMapping(value="id={id}")// "name={name}", "quantity={quantity}", "warehouse={warehouseId}" })
     public String editSingleObject(Model model,@PathVariable int id) {
@@ -158,4 +138,31 @@ public class ProductController {
         model.addAttribute("products", products);
         return "product/edit";
     }
+
+
+
+
+//===================================================================================================
+    @RequestMapping(value="flow/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public TransVendorProductWarehouse flow(@PathVariable int id){
+            //TransVendorProductWarehouse trans=new TransVendorProductWarehouse();
+        //int transId= Integer.parseInt(id);
+            for(TransVendorProductWarehouse tr: vendor_product_warehouseDao.findAll()){
+                if(tr.getId()==id){
+                    return tr;
+                }
+
+            }
+            return null;
+    }
+
+    @RequestMapping(value="flows", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<TransVendorProductWarehouse>flows() {
+        //TransVendorProductWarehouse trans=new TransVendorProductWarehouse();
+        List<TransVendorProductWarehouse>tvpw=new ArrayList<>();
+        vendor_product_warehouseDao.findAll().forEach(trans->tvpw.add(trans));
+        return tvpw;
+
+    }
+//===================================================================================================
 }
