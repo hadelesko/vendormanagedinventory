@@ -115,6 +115,33 @@ public class VendorController {
         model.addAttribute("vendors", vendors);
         return "vendor/edit";
     }
+    // search for partner - warehouses of specific vendor. For example: which warehouses the vendor with id= X deliver product?
+    @RequestMapping(value={"id={vendorId}/warehouses", "{id}/warehouses"})
+    public String getVendorsWarehouses(Model model, @PathVariable int vendorId){
+        Set<Warehouse>deservedWarehouses= new HashSet<Warehouse>();
+        Warehouse transactionWarehouse=new Warehouse();
+        String title="";
+        if(vendorDao.findById(vendorId)!=null && vendor_product_warehouseDao.findByVendorId(vendorId).size()!=0) {
+            for (TransVendorProductWarehouse trans : vendor_product_warehouseDao.findByVendorId(vendorId)) {
+                transactionWarehouse = warehouseDao.findById(trans.getWarehouseId());
+                deservedWarehouses.add(transactionWarehouse);
+            }
+            title = String.format("The warehouse(s) deserved by the vendor with \nid=%1$s: %2$s", vendorId, vendorDao.findById(vendorId).getName());
+        }
+
+        else {
+            if (vendorDao.findById(vendorId) != null && vendor_product_warehouseDao.findByVendorId(vendorId).size() == 0) {
+                title = String.format("This vendor id=%1$s just been registered and no transaction(delivery) \nhas been recorded for him", vendorId);
+            } else {
+                if (vendorDao.findById(vendorId) == null) {
+                    title = String.format("No vendor with such id=%1$s in the system, so no warehouse", vendorId);
+                }
+            }
+        }
+        model.addAttribute("title", title);
+        model.addAttribute("warehouses",deservedWarehouses);
+        return "/warehouse/index";
+    }
 
 
 }
