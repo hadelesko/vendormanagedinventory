@@ -1,19 +1,20 @@
 package org.launchcode.vendormangedinventory.controllers;
 
 import org.launchcode.vendormangedinventory.models.Address;
+import org.launchcode.vendormangedinventory.models.TransVendorProductWarehouse;
+import org.launchcode.vendormangedinventory.models.Vendor;
 import org.launchcode.vendormangedinventory.models.Warehouse;
 import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value="warehouse")
@@ -72,4 +73,19 @@ public class WarehouseController {
         warehouseDao.save(warehouse);
         return "warehouse/add";
     }
+
+    // Search for vendors of specific product
+    @RequestMapping(value="vendors/productId={productId}")
+    public String editVendorsOfProduct(Model model,@PathVariable int productId){
+        Set<Vendor> vendorsOfThisProduct= new HashSet<Vendor>();
+        Vendor transactionVendor=new Vendor();
+        for(TransVendorProductWarehouse productTrans : vendor_product_warehouseDao.findByProductId(productId)){
+            transactionVendor=vendorDao.findById(productTrans.getVendorId());
+            vendorsOfThisProduct.add(transactionVendor);
+        }
+        model.addAttribute("title", "Vendors of the product with id="+productId+" : '"+productDao.findById(productId).getName()+"' are the following");
+        model.addAttribute("vendors", vendorsOfThisProduct);
+        return "/vendor/edit";
+    }
+
 }
