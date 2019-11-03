@@ -10,26 +10,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-<div>
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark" th:fragment="navigation_home">
-        <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="/user/add">Add user</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/user/removed">Remove user</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/">Operations</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/User/accounts">User</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/user/informations">Informations</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/offer/">Marketing</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/search">Search oprations</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/payment">Payments</a> </li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/transfer">Transfers</a></li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/add">add operations</a></li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/removed">Sumarize</a></li>
-            <li class="nav-item active"><a class="nav-link" href="/operations/statistics">Statistics</a></li>
-        </ul>
-    </nav>
-</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" th:fragment="navigation_home">
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/warehouse}">Warehouse</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/vendor}">Vendor</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/product}">Product</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/customer}">Customer</a></li>
+    </ul>
+</nav>
 <hr/>
-<h1 th:text="${title}" th:fragment="title">Welcome to Vendor managed inventory</h1>
+<h2 th:text="${title}" th:fragment="title">Welcome to Vendor managed inventory</h2>
 <div>
     <nav th:fragment="navigation_user">
         <h4>

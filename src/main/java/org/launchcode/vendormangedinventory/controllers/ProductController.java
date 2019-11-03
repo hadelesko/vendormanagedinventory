@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -57,6 +58,7 @@ public class ProductController {
     public String addProductProcess(Model model, @ModelAttribute @Valid Product product,
                                     @RequestParam ("id_of_vendor_of_this_product") int id_of_vendor_of_this_product,
                                     @RequestParam("destinationWarehouse") int destinationWarehouseId,
+                                    //@RequestPart("pictures")List<MultipartFile>pictures,
                                     Errors errors) {
 
         //Set<Warehouse>warehouseListForTheReceivedProduct= (List<Warehouse>) product.getWarehouseList();
@@ -139,7 +141,59 @@ public class ProductController {
         return "product/edit";
     }
 
+    @RequestMapping(value = {"search", "find"}, method = RequestMethod.GET)
+    public String getSearch(Model model) {
+        model.addAttribute("title", "Search product(s)");
+        model.addAttribute(new Product());
+        model.addAttribute(new Vendor());
+        model.addAttribute(new Warehouse());
 
+        model.addAttribute(new TransVendorProductWarehouse());
+        model.addAttribute("vendors", vendorDao.findAll());
+        model.addAttribute("warehouses", warehouseDao.findAll());
+        model.addAttribute("id", "id");
+        model.addAttribute("name", "name");
+        model.addAttribute("quantity", "quantity");
+        model.addAttribute("searchTermValue");
+        return "product/search";
+    }
+
+    @RequestMapping(value={"search", "find"}, method = RequestMethod.POST)
+    public String postSearch(Model model, @RequestParam ("searchCriteria") String searchCriteria,
+                             @RequestParam("searchTermValue") String searchTermValue) {
+        List<Product> products = new ArrayList<>();
+        String title = "";
+        Product product = new Product();
+        if (searchCriteria.equals("name")) {
+            products.add(productDao.findByName(searchTermValue));
+            title = products.size() == 0 ? "No product with the given name=" + searchTermValue : "Result of the search product name = " + searchTermValue + " is";
+            model.addAttribute("title", title);
+            model.addAttribute("products", products);
+            //return "redirect:/product/name=" + searchTermValue;
+        } else {
+            int searchValue = Integer.parseInt(searchTermValue);
+            if (searchCriteria.equals("id") && productDao.findById(searchValue) != null) {
+
+                products.add(productDao.findById(searchValue));
+                title = "No product with the given name";
+                model.addAttribute("title", title);
+                model.addAttribute("products", products);
+
+                //return "redirect:/product/id" + searchValue;
+            } else {
+                if (searchCriteria.equals("quantity") && productDao.findByQuantityLessThan(searchValue) != null) {
+                    productDao.findByQuantityLessThan(searchValue).forEach(prod -> products.add(prod));
+                    title = "Result of the search product name = " + searchTermValue + " is";
+                }
+
+            }
+            model.addAttribute("title", title);
+            model.addAttribute("products", products);
+        }
+        /*model.addAttribute("title", title);
+        model.addAttribute("products", products);*/
+            return "redirect:product/edit";
+        }
 
 
 //===================================================================================================

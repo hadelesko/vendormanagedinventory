@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation_home"></nav>
+
+<br/>
+<div>
+    <form class="form-inline" action="search"  object="${product}" id="sForm">
+
+        <p><strong>Select the search criteria</strong></p>
+
+        <span id="choice"></span>
+        <span id="typ"></span>
+        <select th:name="searchCriteria" id="searchCriteria">
+            <option th:text="${id}" th:value="id" id="id"></option>
+            <option th:text="${name}" th:value="name" id="name"></option>
+            <option th:text="${quantity}" th:value="quantity" id="quantity"></option>
+        </select>
+          <!--  <option>Vendor
+                <select name="vendorId" id="vendorId"><option th:each="vendor : ${vendors}" th:text="${vendor.name}" th:value="${vendor.id}"></option></select>
+            </option>
+            <option>Warehouse
+                <select name="warehouseId" id="warehouseId">
+                    <option th:each="warehouse : ${warehouses}" th:text="${warehouse.name}" th:value="${warehouse.id}"></option>
+                </select>
+            </option>-->
+
+        <!--<option th:text="vendor" th:value="vendorId" id="vendorId">vendor</option>
+        <option th:text="customer" th:value="customerId" id="customerId">Customer</option>
+        <option th:text="warehouse" th:value="warehouseId" id="warehouseId">Warehouse</option>-->
+
+        <input class="form-control" id="searchTermValue" placeholder="Search" th:name="searchTermValue"/>
+        <input type="submit" class="btn btn-primary" value="Search"/>
+    </form>
+    <!--    <script th:inline="javascript">
+            var searchCriteria=document.getElementById("searchCriteria");
+            var searchValue=document.getElementById("searchTermValue");
+            var msg= document.getElementById("choice");
+            var msgs= document.getElementById("typ");
+            var sForm=document.getElementById("sForm");
+
+            function checkSelection(){
+              var search=this.options[this.selectedIndex].value;
+              //
+                    msg.innerHTML=search=="name"?"Great, search by the name!" : (search=="id" ? "By product id!"
+                    :search=="quantty"? "By quantity":search=="vendorId"?"By vendor id!":"By warehouseId!";
+
+                }
+            }
+            function checkTypOf(event){
+            if(searchTerm!="name" &&  typeof searchValue!=='number'){
+                msgs.innerHTML="you must enter a number";
+                event,preventDefault();
+            }
+            sForm.addEventListener('submit', checkTypOf, false);
+            searchCriteria.addEventListener('change', checkSelection, false);
+
+        </script>-->
+</div>
+<nav th:replace="fragments :: navigation_new"></nav>
+</body>
+</html>
