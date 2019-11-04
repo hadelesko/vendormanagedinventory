@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation_home"></nav>
+<!--<h1 th:text="${title}">Default Title</h1>-->
+<div class="container">
+
+    <div><strong><h2 th:replace="fragments :: title">Default Title</h2></strong></div>
+    <form method="POST" style="max-width:600px;" th:object="${product}" action="retour">
+        <div class="form-group">
+        <p><strong>Select the product you want to return from the list bellow</strong></p>
+        <select name ="productId">
+            <option th:each="product : ${products}"
+                    th:text="${product.name}"
+                    th:value="${product.id}">
+            </option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label th:for="quantity">Quantity</label>
+            <input class ="form-control" name="quantity" type="number" required="required"/>
+        </div>
+
+        <div>
+        <p><strong>Select the vendor of the product  you want to return from the list bellow</strong></p>
+        <select name ="vendorId">
+            <option th:each="vendor : ${vendors}"
+                    th:text="${vendor.name}"
+                    th:value="${vendor.id}">
+            </option>
+        </select>
+        </div>
+        <div><p><strong>Select the current  warehouse of the product where the product is stocked from the list bellow</strong></p>
+                <select name ="sourceWarehouseId">
+                    <option th:each = "warehouse : ${warehouses}"
+                            th:text = "${warehouse.name}"
+                            th:value= "${warehouse.id}">
+                    </option>
+                </select>
+        </div>
+
+        <div class="form-group">
+            <select name ="description">
+                <option th:each="motif : ${motifsOfRetour}" th:text="${motif}" th:value="${motif}"></option>
+            </select>
+        </div>
+
+        <input type="submit"  class="btn btn-primary" value="Add new product"/>
+    </form>
+</div>
+<nav th:replace="fragments :: navigation_new"></nav>
+</body>
+</html>

@@ -35,22 +35,25 @@
             <input class ="browse" th:field="*{pictures}" name="picture" id="fileInput" multiple="multiple" type="file" accept="image/*"/>
             <span class ="error" th:errors="*{pictures}"></span>
         </div>
-        <p>Select one vendor from the list bellow. If this vendor is not in the list select<strong> N/A</strong></p>
-        <select name ="id_of_vendor_of_this_product">
-            <option th:value="${notVendorId}" selected="selected"><strong>N/A</strong></option>
-            <option th:each="vendor : ${vendors}"
-                    th:text="${vendor.name}"
-                    th:value="${vendor.id}">
-            </option>
-
-        </select>
-        <select name ="destinationWarehouse">
-            <option th:each="warehouse : ${warehouses}"
-                    th:text="${warehouse.name}"
-                    th:value="${warehouse.id}">
-            </option>
-        </select>
-
+        <div class="form-group">
+                <p>Select one vendor from the list bellow. If this vendor is not in the list select<strong> N/A</strong></p>
+                <select name ="id_of_vendor_of_this_product">
+                    <option th:value="${notVendorId}" selected="selected"><strong>N/A</strong></option>
+                    <option th:each="vendor : ${vendors}"
+                            th:text="${vendor.name}"
+                            th:value="${vendor.id}">
+                    </option>
+                </select>
+        </div>
+        <div class="form-group">
+            <p><strong>Select the destination warehouse or the current warehouse who is receiving the product from the list bellow</strong></p>
+                <select name ="destinationWarehouse">
+                    <option th:each="warehouse : ${warehouses}"
+                            th:text="${warehouse.name}"
+                            th:value="${warehouse.id}">
+                    </option>
+                </select>
+        </div>
         <input type="submit"  class="btn btn-primary" value="Add new product"/>
 </form>
 </div>

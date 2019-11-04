@@ -144,9 +144,6 @@ public class ProductController {
     @RequestMapping(value = {"search", "find"}, method = RequestMethod.GET)
     public String getSearch(Model model) {
         model.addAttribute("title", "Search product(s)");
-        model.addAttribute(new Product());
-        model.addAttribute(new Vendor());
-        model.addAttribute(new Warehouse());
 
         model.addAttribute(new TransVendorProductWarehouse());
         model.addAttribute("vendors", vendorDao.findAll());
@@ -157,6 +154,7 @@ public class ProductController {
         model.addAttribute("searchTermValue");
         return "product/search";
     }
+
 
     @RequestMapping(value={"search", "find"}, method = RequestMethod.POST)
     public String postSearch(Model model, @RequestParam ("searchCriteria") String searchCriteria,
@@ -169,7 +167,7 @@ public class ProductController {
             title = products.size() == 0 ? "No product with the given name=" + searchTermValue : "Result of the search product name = " + searchTermValue + " is";
             model.addAttribute("title", title);
             model.addAttribute("products", products);
-            //return "redirect:/product/name=" + searchTermValue;
+            return "redirect:/product/name=" + searchTermValue;
         } else {
             int searchValue = Integer.parseInt(searchTermValue);
             if (searchCriteria.equals("id") && productDao.findById(searchValue) != null) {
@@ -179,21 +177,99 @@ public class ProductController {
                 model.addAttribute("title", title);
                 model.addAttribute("products", products);
 
-                //return "redirect:/product/id" + searchValue;
+                return "redirect:/product/id" + searchValue;
             } else {
                 if (searchCriteria.equals("quantity") && productDao.findByQuantityLessThan(searchValue) != null) {
                     productDao.findByQuantityLessThan(searchValue).forEach(prod -> products.add(prod));
                     title = "Result of the search product name = " + searchTermValue + " is";
+                    model.addAttribute("title", title);
+                    model.addAttribute("products", products);
+                    //return "product/edit";
                 }
 
             }
+
+
+        }
+
+        return "product/edit";
+        }
+
+
+        @RequestMapping(value="retour", method=RequestMethod.GET)
+        public String getRetourToVendorForm(Model model){
+            List<String>motifsOfRetour=new ArrayList<>();
+            //["Quality", "Default", "Functionality","No need now", "Enough in stock"];
+            motifsOfRetour.add("Quality");
+            motifsOfRetour.add("Default");
+            motifsOfRetour.add("Functionality");
+            motifsOfRetour.add("No need now");
+            motifsOfRetour.add("Enough in stock");
+            model.addAttribute("title", "Retour of product to the vendor");
+            model.addAttribute(new TransVendorProductWarehouse());
+            model .addAttribute("products", productDao.findAll());
+            model.addAttribute("vendors", vendorDao.findAll());
+            model.addAttribute("warehouses", warehouseDao.findAll());
+            model.addAttribute("motifsOfRetour", motifsOfRetour);
+            model.addAttribute("product", new Product());
+            return "product/retour";
+        }
+    @RequestMapping(value="retour", method=RequestMethod.POST)
+    public String postRetourToVendor(Model model,@RequestParam("quantity") int quantityReturned,
+                                     @RequestParam ("productId") int productId,
+                                     @RequestParam("sourceWarehouseId") int sourceWarehouseId,
+                                     @RequestParam ("vendorId") int vendorId,
+                                     @RequestParam ("description") String description){
+
+        int currentStock=productDao.findById(productId).getQuantity();
+        Product selectedProduct=productDao.findById(productId);
+        Set<Warehouse>productWarehouses=new HashSet<>();
+        Set<Vendor>productVendors=new HashSet<>();
+        productVendors.addAll(productDao.findById(productId).getVendorList());
+        Vendor vendorSelected=vendorDao.findById(vendorId);
+        Warehouse selectedWarehouse=warehouseDao.findById(sourceWarehouseId);
+        productWarehouses.addAll(productDao.findById(productId).getWarehouseList());
+
+        if(quantityReturned<=productDao.findById(productId).getQuantity() && productWarehouses.contains(selectedWarehouse) && productVendors.contains(vendorSelected)){
+            TransVendorProductWarehouse retour=new TransVendorProductWarehouse();
+            //Date retourDate=new Date();
+            int newstock=currentStock-quantityReturned;
+            retour.setDescription(description);
+            retour.setQuantity(quantityReturned);
+            retour.setTransactionsDate(new Date());
+            retour.setProductId(productId);
+            retour.setVendorId(vendorId);
+            retour.setWarehouseId(sourceWarehouseId);
+            retour.setPrice(selectedProduct.getPrice());
+            vendor_product_warehouseDao.save(retour);
+            productDao.findById(productId).setQuantity(newstock);
+            return "product/edit";
+        }
+        else{
+            String title1=quantityReturned<=productDao.findById(productId).getQuantity()?  "" : selectedProduct.getName()+": Quantity must be less or equals to "+ selectedProduct.getQuantity() +".  ";
+            String title2=productWarehouses.contains(selectedWarehouse)? "" : "This warehouse ="+selectedWarehouse.getName()+ "  has not the product = "+selectedProduct.getName()+".  ";
+            String title3= productVendors.contains(vendorSelected)? ""  :  "The selected Vendor = "+vendorSelected.getName()+" is not the right vendor for the product = "+selectedProduct.getName();
+
+            String title= title1+" \n "+title2+" \n "+title3;
             model.addAttribute("title", title);
-            model.addAttribute("products", products);
+
+            List<String>motifsOfRetour=new ArrayList<>();
+            //["Quality", "Default", "Functionality","No need now", "Enough in stock"];
+            motifsOfRetour.add("Quality");
+            motifsOfRetour.add("Default");
+            motifsOfRetour.add("Functionality");
+            motifsOfRetour.add("No need now");
+            motifsOfRetour.add("Enough in stock");
+            model .addAttribute("products", productDao.findAll());
+            model.addAttribute("vendors", vendorDao.findAll());
+            model.addAttribute("warehouses", warehouseDao.findAll());
+            model.addAttribute("motifsOfRetour", motifsOfRetour);
+            return  "product/retour";
         }
-        /*model.addAttribute("title", title);
-        model.addAttribute("products", products);*/
-            return "redirect:product/edit";
-        }
+
+
+
+    }
 
 
 //===================================================================================================
