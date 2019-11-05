@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation_home"></nav>
+
+<br/>
+<h1 th:replace="fragments :: title">Default Title</h1>
+<div class="container">
+
+    <p th:unless="${customers}">no customer yet recorded with the given search criteria!</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <!--<th>Warehouses</th>-->
+        </tr>
+        </thead>
+
+        <tr th:each="customer : ${customers}">
+
+            <td><a th:href="'/customer/id='+${customer.id}" th:text="${customer.id}"></a></td>
+            <td th:text="${customer.name}"></td>
+            <td th:field="*{customer.address}">
+                <label th:for="email">Email: </label><i th:text="${customer.address.email}"></i><br/>
+                <label th:for="city">City: </label><i th:text="${customer.address.city}"></i><br/>
+                <label th:for="country">Country: </label><i th:text="${customer.address.country}"></i><br/>
+                <label th:for="fax">Fax: </label><i th:text="${customer.address.fax}"></i><br/>
+                <label th:for="phone">Phone: </label><i th:text="${customer.address.phone}"></i><br/>
+                <label th:for="street">Street: </label><i th:text="${customer.address.street}"></i><br/>
+                <label th:for="zipCode">Zip: </label><i th:text="${customer.address.zipCode}"></i>
+            </td>
+
+            <!--            <td>
+                            <strong th:each="warehouse:${customer.warehouseList}">
+                                <strong>|</strong>
+                                <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
+                            </strong>
+                            <strong>|</strong>
+                        </td>-->
+        </tr>
+
+    </table>
+</div>
+<!--<script th:inline="javascript">
+    var number = [[${number}]];
+    var message = "[[${message}]]";
+</script>-->
+<!--<div th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></div>-->
+</body>
+</html>

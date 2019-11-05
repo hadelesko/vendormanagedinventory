@@ -20,31 +20,31 @@
                 <th>Phone</th>
                 <th>Street</th>
                 <th>ZipCode</th>
-                <th>Products</th>
-                <th>Customers</th>
-                <th>Vendors</th>
+                <!-- <th>Products</th>
+               <th>Customers</th>
+                <th>Vendors</th>-->
             </tr>
             </thead>
             <tbody>
             <tr th:each=" warehouse : ${warehouses}">
 
-            <td th:text="${warehouse.id}"></td>
-            <td th:text="${warehouse.name}"></td>
-            <td th:text="${warehouse.address.email}"></td>
-            <td th:text="${warehouse.address.city}"></td>
-            <td th:text="${warehouse.address.country}"></td>
-            <td th:text="${warehouse.address.fax}"></td>
-            <td th:text="${warehouse.address.phone}"></td>
-            <td th:text="${warehouse.address.street}"></td>
-            <td th:text="${warehouse.address.zipCode}"></td>
-                <td>
+                <td><a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a></td>
+                <td th:text="${warehouse.name}"></td>
+                <td th:text="${warehouse.address.email}"></td>
+                <td th:text="${warehouse.address.city}"></td>
+                <td th:text="${warehouse.address.country}"></td>
+                <td th:text="${warehouse.address.fax}"></td>
+                <td th:text="${warehouse.address.phone}"></td>
+                <td th:text="${warehouse.address.street}"></td>
+                <td th:text="${warehouse.address.zipCode}"></td>
+         <!--       <td>
                     <strong th:each="product:${warehouse.products}">
                         <strong>|</strong>
                         <a th:href="'/product/id='+${product.id}" th:text="${product.id}"></a>
                     </strong>
                     <strong>|</strong>
-                </td>
-                <td>
+                </td>-->
+                <!--<td>
                     <strong th:each="vendor:${warehouse.listVendors}">
                         <strong>|</strong>
                         <a th:href="'/vendor/id='+${vendor.id}" th:text="${vendor.id}"></a>
@@ -57,7 +57,7 @@
                         <a th:href="'/customer/id='+${customer.id}" th:text="${customer.id}"></a>
                     </strong>
                     <strong>|</strong>
-                </td>
+                </td>-->
             </tr>
             </tbody>
         </table>

@@ -18,13 +18,15 @@ public class Warehouse_Customer {
     @Id
     @GeneratedValue
     private int id;
-    private int warehouse_id;
-    private long customer_id;
+    private int warehouseId;
+    private int customerId;
     //@ManyToOne
     //private Product product;
-    private long product_id;
+    private int productId;
     private int quantity;
     private Date date;
+
+    public Warehouse_Customer() {}
 
     public int getId() {
         return id;
@@ -34,28 +36,28 @@ public class Warehouse_Customer {
         this.id = id;
     }
 
-    public int getWarehouse_id() {
-        return warehouse_id;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setWarehouse_id(int warehouse_id) {
-        this.warehouse_id = warehouse_id;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
-    public long getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(long customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {

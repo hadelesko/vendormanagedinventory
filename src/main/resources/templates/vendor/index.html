@@ -24,18 +24,18 @@
                 </thead>
 
                 <tr th:each="vendor : ${vendors}">
-
-                <td th:text="${vendor.id}"></td>
-                <td th:text="${vendor.name}"></td>
-                <td th:text="${vendor.address.email}"></td>
-                <td th:text="${vendor.address.city}"></td>
-                <td th:text="${vendor.address.country}"></td>
-                <td th:text="${vendor.address.fax}"></td>
-                <td th:text="${vendor.address.phone}"></td>
-                <td th:text="${vendor.address.street}"></td>
-                <td th:text="${vendor.address.zipCode}"></td>
+                        <td><a th:href="'/vendor/id='+${vendor.id}" th:text="${vendor.id}"></a></td>
+                        <td th:text="${vendor.name}"></td>
+                        <td th:text="${vendor.address.email}"></td>
+                        <td th:text="${vendor.address.city}"></td>
+                        <td th:text="${vendor.address.country}"></td>
+                        <td th:text="${vendor.address.fax}"></td>
+                        <td th:text="${vendor.address.phone}"></td>
+                        <td th:text="${vendor.address.street}"></td>
+                        <td th:text="${vendor.address.zipCode}"></td>
                 </tr>
             </table>
         </div>
+    <nav th:replace="fragments :: navigation_task"></nav>
 </body>
 </html>

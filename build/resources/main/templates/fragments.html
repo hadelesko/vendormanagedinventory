@@ -17,6 +17,7 @@
         <li class="nav-item"><a class="nav-link" th:href="@{/vendor}">Vendor</a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/product}">Product</a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/customer}">Customer</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/transactions}">Transactions</a></li>
     </ul>
 </nav>
 <hr/>
@@ -30,6 +31,17 @@
             <a href="advices">Advices</a> |
             <a href="information">Information</a> |
             <a href="Summary">Summary</a>|
+        </h4>
+    </nav>
+</div>
+
+<div>
+    <nav th:fragment="navigation_task">
+        <h4>
+            <a href="/product/add">Reception</a> |
+            <a href="/product/retour">Retour</a> |
+            <a href="/vendor/add">Add new vendor</a>|
+            <a href="/warehouse/add">Add warehouse</a>|
         </h4>
     </nav>
 </div>

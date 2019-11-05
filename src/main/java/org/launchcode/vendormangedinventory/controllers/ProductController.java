@@ -31,6 +31,8 @@ public class ProductController {
 
     @Autowired
     private Vendor_Product_WarehouseDao vendor_product_warehouseDao;
+    @Autowired
+    private CustomerDao customerDao;
 
     @RequestMapping(value="")
     public String index(Model model){
@@ -63,6 +65,9 @@ public class ProductController {
 
         //Set<Warehouse>warehouseListForTheReceivedProduct= (List<Warehouse>) product.getWarehouseList();
         Warehouse destinationWarehouse=warehouseDao.findById(destinationWarehouseId);
+        Set<Vendor> vendorListOfThisProduct= new HashSet<>();
+        Set<Warehouse> warehousesListOfThisProduct= new HashSet<>();
+
         //String path="";
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add new product");
@@ -72,22 +77,37 @@ public class ProductController {
             if(id_of_vendor_of_this_product == 0) { // we have no vendor with id=0
 
                 return "redirect:/vendor/add";
-            }else {
+            }else{
+
                 Vendor currentVendor = vendorDao.findById(id_of_vendor_of_this_product);
-                //Set<Vendor> vendorListOfThisProduct=.;
+
+
                 if(productDao.findByName(product.getName())!=null) { // Case product exists
                     int productId=productDao.findByName(product.getName()).getId();
                     int newStock=productDao.findByName(product.getName()).getQuantity()+product.getQuantity();
-
                     //update
-                    //productDao.findById(productId).getVendorList().add(currentVendor);
+                    //Update the warehouse list
+                    //warehousesListOfThisProduct.addAll(productDao.findByName(product.getName()).getWarehouseList());
 
-                    product.getWarehouseList().add(destinationWarehouse);
-                    productDao.findById(productId).setQuantity(newStock);
+                    //vendor_product_warehouseDao.findByProductId(productId).forEach(transs->warehousesListOfThisProduct.add(warehouseDao.findById(transs.getWarehouseId())));
+                            for(TransVendorProductWarehouse transs: vendor_product_warehouseDao.findByProductId(productId)){
+                                warehousesListOfThisProduct.add(warehouseDao.findById(transs.getWarehouseId()));
+                            }
+
+                    warehousesListOfThisProduct.add(destinationWarehouse); // add the current warehouse
+                    //Update the vendor list of the product
+                    //vendorListOfThisProduct.addAll(productDao.findByName(product.getName()).getVendorList());
+                    vendorListOfThisProduct.add(currentVendor); // add the current vendor
+
+                    //update in the database
+                    productDao.findById(productId).setQuantity(newStock);  // Stock update
+
+                    //productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
+                    //productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
 
                 }else{
                     //product.getId();
-                    //product.getWarehouseList().add(destinationWarehouse);
+                    //product.getWarehouses().add(destinationWarehouse);
                     //product.setId(product.getId());
                     productDao.save(product);
                 }
@@ -225,12 +245,21 @@ public class ProductController {
         Product selectedProduct=productDao.findById(productId);
         Set<Warehouse>productWarehouses=new HashSet<>();
         Set<Vendor>productVendors=new HashSet<>();
-        productVendors.addAll(productDao.findById(productId).getVendorList());
+
+        productVendors.addAll(vendorDao.findByProduct(selectedProduct));
         Vendor vendorSelected=vendorDao.findById(vendorId);
         Warehouse selectedWarehouse=warehouseDao.findById(sourceWarehouseId);
-        productWarehouses.addAll(productDao.findById(productId).getWarehouseList());
 
-        if(quantityReturned<=productDao.findById(productId).getQuantity() && productWarehouses.contains(selectedWarehouse) && productVendors.contains(vendorSelected)){
+
+        //productWarehouses.addAll(productDao.findById(productId).getWarehouseList());
+
+        for(TransVendorProductWarehouse transs: vendor_product_warehouseDao.findByProductId(productId)){
+            productWarehouses.add(warehouseDao.findById(transs.getWarehouseId()));
+        }
+
+        if(quantityReturned<=productDao.findById(productId).getQuantity()
+                && productWarehouses.contains(selectedWarehouse)
+                && productVendors.contains(vendorSelected)){
             TransVendorProductWarehouse retour=new TransVendorProductWarehouse();
             //Date retourDate=new Date();
             int newstock=currentStock-quantityReturned;
@@ -242,11 +271,12 @@ public class ProductController {
             retour.setWarehouseId(sourceWarehouseId);
             retour.setPrice(selectedProduct.getPrice());
             vendor_product_warehouseDao.save(retour);
+
             productDao.findById(productId).setQuantity(newstock);
             return "product/edit";
         }
         else{
-            String title1=quantityReturned<=productDao.findById(productId).getQuantity()?  "" : selectedProduct.getName()+": Quantity must be less or equals to "+ selectedProduct.getQuantity() +".  ";
+            String title1=quantityReturned<=productDao.findById(productId).getQuantity()?  "" : selectedProduct.getName()+": max. quantity= "+ selectedProduct.getQuantity() +".  ";
             String title2=productWarehouses.contains(selectedWarehouse)? "" : "This warehouse ="+selectedWarehouse.getName()+ "  has not the product = "+selectedProduct.getName()+".  ";
             String title3= productVendors.contains(vendorSelected)? ""  :  "The selected Vendor = "+vendorSelected.getName()+" is not the right vendor for the product = "+selectedProduct.getName();
 
@@ -261,6 +291,7 @@ public class ProductController {
             motifsOfRetour.add("No need now");
             motifsOfRetour.add("Enough in stock");
             model .addAttribute("products", productDao.findAll());
+
             model.addAttribute("vendors", vendorDao.findAll());
             model.addAttribute("warehouses", warehouseDao.findAll());
             model.addAttribute("motifsOfRetour", motifsOfRetour);

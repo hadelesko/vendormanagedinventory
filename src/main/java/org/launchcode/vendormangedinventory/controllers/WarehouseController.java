@@ -12,9 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="warehouse")
@@ -37,6 +35,19 @@ public class WarehouseController {
     public String index(Model model){
         model.addAttribute("title", "List of Warehouses");
         model.addAttribute("warehouses",warehouseDao.findAll());
+        return "warehouse/index";
+    }
+    @RequestMapping(value="id={id}")// "name={name}", "quantity={quantity}", "warehouse={warehouseId}" })
+    public String editSingleObjectBId(Model model,@PathVariable int id) {
+        List<Warehouse>  warehouses = new ArrayList<>();
+        if (vendor_product_warehouseDao.findById(id) == null) {
+            model.addAttribute("title", "Search for warehouse with  id =" + id + "  No warehouse with the specified id");
+            model.addAttribute("warehouses", warehouses);
+        } else {
+            warehouses.add(warehouseDao.findById(id));
+            model.addAttribute("title", "Result of the search for warehouse with  id =" + id + " is the following");
+            model.addAttribute("warehouses", warehouses);
+        }
         return "warehouse/index";
     }
 
@@ -87,5 +98,6 @@ public class WarehouseController {
         model.addAttribute("vendors", vendorsOfThisProduct);
         return "/vendor/edit";
     }
+
 
 }

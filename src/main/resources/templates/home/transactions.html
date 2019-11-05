@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation_home"></nav>
+
+<br/>
+<h1 th:replace="fragments :: title">Default Title</h1>
+<div class="container">
+
+    <p th:unless="${transactions}">no transaction yet recorded with the given search criteria!</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Product_id</th>
+            <th>Vendor_id</th>
+            <th>Warehouse_id</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+        <tr th:each="transaction : ${transactions}">
+
+            <td><a th:href="'/transactions/id='+${transaction.id}" th:text="${transaction.id}"></a></td>
+            <td th:text="${transaction.transactionsDate}"></td>
+            <td th:text="${transaction.description}"></td>
+            <td><a  th:href="'/product/id='+${transaction.productId}"  th:text="${transaction.productId}"></a></td>
+            <td><a  th:href="'/vendor/id='+${transaction.vendorId} "  th:text="${transaction.vendorId}"></a></td>
+            <td><a  th:href="'/warehouse/id='+${transaction.warehouseId}" th:text="${transaction.warehouseId}"></a></td>
+            <td th:text="${transaction.quantity}"></td>
+            <td th:text="${transaction.price}"></td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

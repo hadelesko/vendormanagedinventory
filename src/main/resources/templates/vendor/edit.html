@@ -16,7 +16,7 @@
             <th>id</th>
             <th>Name</th>
             <th>Address</th>
-            <th>Warehouses</th>
+            <!--<th>Warehouses</th>-->
         </tr>
         </thead>
 
@@ -34,17 +34,20 @@
                 <label th:for="zipCode">Zip: </label><i th:text="${vendor.address.zipCode}"></i>
             </td>
 
-            <td>
+<!--            <td>
                 <strong th:each="warehouse:${vendor.warehouseList}">
                     <strong>|</strong>
                     <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
                 </strong>
                 <strong>|</strong>
-            </td>
+            </td>-->
         </tr>
 
     </table>
+
 </div>
+<nav th:replace="fragments :: navigation_task"></nav>
+
 <!--<script th:inline="javascript">
     var number = [[${number}]];
     var message = "[[${message}]]";

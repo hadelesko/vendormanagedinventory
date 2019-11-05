@@ -29,20 +29,22 @@ public class Product {
 
     //@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="vendor_product",
                 joinColumns = {@JoinColumn(name="vendor_id")},
-                inverseJoinColumns = {@JoinColumn(name="product_id")})
+                inverseJoinColumns = {@JoinColumn(name="product_id")})*/
+    @OneToMany
     private Set<Vendor> vendorList=new HashSet<Vendor>();
 
     @ManyToMany(mappedBy = "listBoughtProduct")  // refers to the fields in customer-Table  'listBoughtProduct'
     private List<Customer> customers = new ArrayList<Customer>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "product_warehouse",
             joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})
-    private Set<Warehouse> warehouseList = new HashSet<>();
+            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})*/
+    @ManyToMany(mappedBy="products")
+    private List<Warehouse> warehouses=new ArrayList<>(); ///
 
 
     //@Pattern(regexp = "[1-9]*\\.[0-9]{2}")
@@ -53,7 +55,6 @@ public class Product {
     private String description;
 
     public Product() {}
-
 
 
     public int getId() {
@@ -72,12 +73,28 @@ public class Product {
         this.name = name;
     }
 
+    public File getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(File pictures) {
+        this.pictures = pictures;
+    }
+
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Set<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(Set<Vendor> vendorList) {
+        this.vendorList = vendorList;
     }
 
     public List<Customer> getCustomers() {
@@ -88,12 +105,12 @@ public class Product {
         this.customers = customers;
     }
 
-    public Set<Warehouse> getWarehouseList() {
-        return warehouseList;
+    public List<Warehouse> getWarehouses() {
+        return warehouses;
     }
 
-    public void setWarehouseList(Set<Warehouse> warehouseList) {
-        this.warehouseList = warehouseList;
+    public void setWarehouses(List<Warehouse> warehouses) {
+        this.warehouses = warehouses;
     }
 
     public double getPrice() {
@@ -110,22 +127,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    public File getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(File pictures) {
-        this.pictures = pictures;
-    }
-
-    public Set<Vendor> getVendorList() {
-        return vendorList;
-    }
-
-    public void setVendorList(Set<Vendor> vendorList) {
-        this.vendorList = vendorList;
     }
 }

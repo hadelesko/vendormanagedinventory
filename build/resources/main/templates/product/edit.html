@@ -18,8 +18,8 @@
             <th>Quantity</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Warehouses</th>
-<!--        <th>Picture</th>-->
+            <!--<th>Warehouses</th>
+            <th>Picture</th>&ndash;&gt;-->
         </tr>
         </thead>
 
@@ -31,13 +31,13 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
 
-            <td>
-                <strong th:each="warehouse:${product.getWarehouseList()}">
+ <!--           <td>
+                <strong th:each="warehouse:${product.warehouses}">
                     <strong>|</strong>
                     <a th:href="'/warehouse/id='+${warehouse.id}" th:text="${warehouse.id}"></a>
                 </strong>
                 <strong>|</strong>
-            </td>
+            </td>-->
             <!--<td><img th:src="@{product.pictures}" class="img-thumbnail" width="250" height="150"/></td>-->
 <!--            <td th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></td>-->
         </tr>
@@ -45,5 +45,6 @@
     </table>
 </div>
 <!--<div th:each="image : {product.pictures}"><img th:src="@{image}" class="img-thumbnail" width="250" height="150"/></div>-->
+<nav th:replace="fragments :: navigation_task"></nav>
 </body>
 </html>

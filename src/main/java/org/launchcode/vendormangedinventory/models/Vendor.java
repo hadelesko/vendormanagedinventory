@@ -33,10 +33,11 @@ public class Vendor {
     *
     * */
 
-    @ManyToMany(cascade={CascadeType.ALL})
+    /*@ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="vendor_warehouse",
         joinColumns = {@JoinColumn(name="vendor_id")},
-        inverseJoinColumns = {@JoinColumn(name="warehouse_id")})
+        inverseJoinColumns = {@JoinColumn(name="warehouse_id")})*/
+    @ManyToMany
     private List<Warehouse> warehouseList =new ArrayList<>();
 
     public Vendor(){}

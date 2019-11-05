@@ -18,11 +18,13 @@ public class Vendor_Warehouse {
     @GeneratedValue
     private int id;
 
-    private long vendor_id;
-    private long warehouse_id;
+    private int vendorId;
+    private int warehouseId;
     private int quantity;
     private Date date;
 
+    public Vendor_Warehouse() {
+    }
 
     public int getId() {
         return id;
@@ -32,20 +34,20 @@ public class Vendor_Warehouse {
         this.id = id;
     }
 
-    public long getVendor_id() {
-        return vendor_id;
+    public int getVendorId() {
+        return vendorId;
     }
 
-    public void setVendor_id(long vendor_id) {
-        this.vendor_id = vendor_id;
+    public void setVendorId(int vendorId) {
+        this.vendorId = vendorId;
     }
 
-    public long getWarehouse_id() {
-        return warehouse_id;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setWarehouse_id(long warehouse_id) {
-        this.warehouse_id = warehouse_id;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public int getQuantity() {
