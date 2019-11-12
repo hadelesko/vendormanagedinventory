@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,12 +34,12 @@ public class Vendor {
     *
     * */
 
-    /*@ManyToMany(cascade={CascadeType.ALL})
+    @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="vendor_warehouse",
         joinColumns = {@JoinColumn(name="vendor_id")},
-        inverseJoinColumns = {@JoinColumn(name="warehouse_id")})*/
-    @ManyToMany
-    private List<Warehouse> warehouseList =new ArrayList<>();
+        inverseJoinColumns = {@JoinColumn(name="warehouse_id")})
+    //@ManyToMany
+    private Set<Warehouse> warehouseList =new HashSet<>();
 
     public Vendor(){}
 
@@ -74,11 +75,11 @@ public class Vendor {
         this.product = product;
     }
 
-    public List<Warehouse> getWarehouseList() {
+    public Set<Warehouse> getWarehouseList() {
         return warehouseList;
     }
 
-    public void setWarehouseList(List<Warehouse> warehouseList) {
+    public void setWarehouseList(Set<Warehouse> warehouseList) {
         this.warehouseList = warehouseList;
     }
 }

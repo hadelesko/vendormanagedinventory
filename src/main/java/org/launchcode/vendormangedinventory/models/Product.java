@@ -29,21 +29,21 @@ public class Product {
 
     //@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
-    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="vendor_product",
                 joinColumns = {@JoinColumn(name="vendor_id")},
-                inverseJoinColumns = {@JoinColumn(name="product_id")})*/
-    @OneToMany
+                inverseJoinColumns = {@JoinColumn(name="product_id")})
+    //@OneToMany(mappedBy="product")
     private Set<Vendor> vendorList=new HashSet<Vendor>();
 
     @ManyToMany(mappedBy = "listBoughtProduct")  // refers to the fields in customer-Table  'listBoughtProduct'
     private List<Customer> customers = new ArrayList<Customer>();
 
-    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "product_warehouse",
             joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})*/
-    @ManyToMany(mappedBy="products")
+            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})
+    //@ManyToMany(mappedBy="products")
     private List<Warehouse> warehouses=new ArrayList<>(); ///
 
 

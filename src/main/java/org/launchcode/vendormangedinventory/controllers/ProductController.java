@@ -90,9 +90,9 @@ public class ProductController {
                     //warehousesListOfThisProduct.addAll(productDao.findByName(product.getName()).getWarehouseList());
 
                     //vendor_product_warehouseDao.findByProductId(productId).forEach(transs->warehousesListOfThisProduct.add(warehouseDao.findById(transs.getWarehouseId())));
-                            for(TransVendorProductWarehouse transs: vendor_product_warehouseDao.findByProductId(productId)){
-                                warehousesListOfThisProduct.add(warehouseDao.findById(transs.getWarehouseId()));
-                            }
+                    for(TransVendorProductWarehouse transs: vendor_product_warehouseDao.findByProductId(productId)){
+                        warehousesListOfThisProduct.add(warehouseDao.findById(transs.getWarehouseId()));
+                    }
 
                     warehousesListOfThisProduct.add(destinationWarehouse); // add the current warehouse
                     //Update the vendor list of the product
@@ -253,8 +253,8 @@ public class ProductController {
 
         //productWarehouses.addAll(productDao.findById(productId).getWarehouseList());
 
-        for(TransVendorProductWarehouse transs: vendor_product_warehouseDao.findByProductId(productId)){
-            productWarehouses.add(warehouseDao.findById(transs.getWarehouseId()));
+        for(TransVendorProductWarehouse trans: vendor_product_warehouseDao.findByProductId(productId)){
+            productWarehouses.add(warehouseDao.findById(trans.getWarehouseId()));
         }
 
         if(quantityReturned<=productDao.findById(productId).getQuantity()

@@ -18,11 +18,11 @@ public class Warehouse_Customer {
     @Id
     @GeneratedValue
     private int id;
-    private int warehouseId;
-    private int customerId;
+    private int warehouse_id;
+    private int customer_id;
     //@ManyToOne
     //private Product product;
-    private int productId;
+    private int product_id;
     private int quantity;
     private Date date;
 
@@ -34,30 +34,6 @@ public class Warehouse_Customer {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(int warehouseId) {
-        this.warehouseId = warehouseId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public int getQuantity() {
@@ -74,6 +50,30 @@ public class Warehouse_Customer {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(int warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 }
 

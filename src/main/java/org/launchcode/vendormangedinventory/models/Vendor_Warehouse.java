@@ -18,9 +18,10 @@ public class Vendor_Warehouse {
     @GeneratedValue
     private int id;
 
-    private int vendorId;
-    private int warehouseId;
+    private int vendor_id;
+    private int warehouse_id;
     private int quantity;
+    private String description;
     private Date date;
 
     public Vendor_Warehouse() {
@@ -32,22 +33,6 @@ public class Vendor_Warehouse {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(int vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public int getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(int warehouseId) {
-        this.warehouseId = warehouseId;
     }
 
     public int getQuantity() {
@@ -64,6 +49,30 @@ public class Vendor_Warehouse {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getVendor_id() {
+        return vendor_id;
+    }
+
+    public void setVendor_id(int vendor_id) {
+        this.vendor_id = vendor_id;
+    }
+
+    public int getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(int warehouse_id) {
+        this.warehouse_id = warehouse_id;
     }
 }
 

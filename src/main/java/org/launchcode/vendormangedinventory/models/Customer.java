@@ -2,7 +2,10 @@ package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 public class Customer {
     @Id
@@ -12,15 +15,15 @@ public class Customer {
     @Embedded
     private Address address;
 
-/*    @ManyToMany(cascade={CascadeType.ALL})
+    @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Customer_Product",
             joinColumns = { @JoinColumn(name = "customer_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id")})*/
-    @ManyToMany
+            inverseJoinColumns = { @JoinColumn(name = "product_id")})
+    //@ManyToMany
     private List<Product>listBoughtProduct; //=new ArrayList<Product>();
 
     @ManyToMany(mappedBy="customers")
-    private List<Warehouse>warehouses=new ArrayList<Warehouse>();
+    private Set<Warehouse> warehouses=new HashSet<Warehouse>();
 
     public Customer(){}
 
@@ -56,13 +59,15 @@ public class Customer {
         this.listBoughtProduct = listBoughtProduct;
     }
 
-    public List<Warehouse> getWarehouses() {
+    public Set<Warehouse> getWarehouses() {
         return warehouses;
     }
 
-    public void setWarehouses(List<Warehouse> warehouses) {
+    public void setWarehouses(Set<Warehouse> warehouses) {
         this.warehouses = warehouses;
     }
+
+
 
     /*@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="purchaseId")

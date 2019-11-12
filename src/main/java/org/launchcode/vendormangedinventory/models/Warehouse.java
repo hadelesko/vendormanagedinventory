@@ -18,11 +18,11 @@ public class Warehouse {
     @ManyToMany
     private List<Product> products=new ArrayList<>();
 
-/*    @ManyToMany(cascade={CascadeType.ALL})
+    @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Warehouse_Customer",
             joinColumns = {@JoinColumn(name = "warehouse_id") },
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")})*/
-    @ManyToMany
+            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+    //@ManyToMany
     private Set<Customer> customers; //=new HashSet<Customer>(); // no need to new HashSet Customer here
 
     /*mappedBy="warehouseList"to refer to the join-table "vendor_warehouse" that means
