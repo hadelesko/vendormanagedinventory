@@ -325,5 +325,15 @@ public class ProductController {
         return tvpw;
 
     }
+
+
 //===================================================================================================
+@RequestMapping(value="vendis")
+@ResponseBody
+public Product getProd() {
+    Product prod = productDao.findById(6);
+
+    return prod;
+
+}
 }

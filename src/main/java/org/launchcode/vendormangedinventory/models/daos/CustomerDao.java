@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface CustomerDao extends CrudRepository<Customer, Integer> {
-
-
+public interface CustomerDao extends CrudRepository<Customer, Integer>{
+    Customer findById(int id);
 }

@@ -1,9 +1,12 @@
 package org.launchcode.vendormangedinventory.controllers;
 
+import org.launchcode.vendormangedinventory.models.Customer;
+import org.launchcode.vendormangedinventory.models.Vendor;
 import org.launchcode.vendormangedinventory.models.daos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping(value="customer")
 public class CustomerController {
@@ -29,4 +32,15 @@ public class CustomerController {
         model.addAttribute("customers",customerDao.findAll());
         return "customer/index";
     }
-}
+
+
+      @RequestMapping(value="vendis")
+        @ResponseBody
+        public Customer getCustomer(){
+           Customer cust=customerDao.findById(1);
+
+            return cust;
+        }
+    }
+
+
