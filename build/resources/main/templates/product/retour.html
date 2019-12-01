@@ -8,7 +8,7 @@
 <div class="container">
 
     <div><strong><h2 th:replace="fragments :: title">Default Title</h2></strong></div>
-    <form method="POST" style="max-width:600px;" th:object="${product}" action="retour">
+    <form style="max-width:600px;" th:object="${product}" th:action="retour" method="POST">
         <div class="form-group">
         <p><strong>Select the product you want to return from the list bellow</strong></p>
         <select name ="productId">

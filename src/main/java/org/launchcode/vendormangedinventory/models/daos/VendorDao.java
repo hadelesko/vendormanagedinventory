@@ -13,5 +13,5 @@ import java.util.List;
 public interface VendorDao extends CrudRepository<Vendor, Integer> {
     Vendor findById(int id);
     Vendor findByName(String name);
-    List <Vendor>findByProduct(Product product);
+    List<Vendor>findByProduct(Product product);
 }

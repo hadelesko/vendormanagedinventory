@@ -105,11 +105,13 @@ public class ProductController {
                     //productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
                     //productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
 
-                }else{
-                    //product.getId();
-                    //product.getWarehouses().add(destinationWarehouse);
-                    //product.setId(product.getId());
+                }else{ //Product does not exist
+
+
                     productDao.save(product);
+                    productDao.findByName(product.getName()).getWarehouses().add(destinationWarehouse);
+                    productDao.findByName(product.getName()).getVendorList().add(currentVendor);
+
                 }
                 int productId=productDao.findByName(product.getName()).getId();
                 Date deliveryDate=new Date();

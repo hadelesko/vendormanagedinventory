@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 //import java.awt.*;
 import java.io.File;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +22,9 @@ public class Product {
     @Size(min = 5, message = "At least 5 character")
     private String name;
     @Lob
-    @Basic(fetch = FetchType.LAZY)
+    @Basic(fetch = FetchType.LAZY)//private Blob pictures;
     private File pictures;
+
 
     //@Pattern(regexp = "[1-9]+")
     private int quantity;
@@ -73,13 +75,13 @@ public class Product {
         this.name = name;
     }
 
-    public File getPictures() {
+    /*public File getPictures() {
         return pictures;
     }
 
     public void setPictures(File pictures) {
         this.pictures = pictures;
-    }
+    }*/
 
     public int getQuantity() {
         return quantity;
@@ -127,5 +129,13 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public File getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(File pictures) {
+        this.pictures = pictures;
     }
 }

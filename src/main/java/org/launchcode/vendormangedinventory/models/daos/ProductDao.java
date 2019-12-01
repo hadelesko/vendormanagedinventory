@@ -14,5 +14,4 @@ public interface ProductDao extends CrudRepository<Product, Integer> {
     Product findByName(String name);
     Product findById(int id);
     List<Product>findByQuantityLessThan(int quantity);
-
 }
