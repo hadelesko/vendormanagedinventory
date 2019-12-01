@@ -16,7 +16,6 @@
 <p>As described above this application will support the warhouse, the Vendors and customer in their inteactions. All together we can identify the following methods:</p>
 <ul>
 <li><strong>Add: </strong> new customer, new vendor, new product</li>
-<li><strong>Login: </strong> vendor, customer</li>
 <li><strong>Receive: </strong> a product from vendors or from customer after return</li>
 <li><strong>Return: </strong> product: warehouse retun product to the vendor</li>
 <li><strong>Search: </strong> product, customer, vendor</li>
