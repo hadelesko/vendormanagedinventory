@@ -300,8 +300,6 @@ public class ProductController {
             return  "product/retour";
         }
 
-
-
     }
 
 
