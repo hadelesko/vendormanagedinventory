@@ -18,7 +18,16 @@ public class TransVendorProductWarehouse {
                             // or from warehouse to vendor by retour
     private double price;  // For billing purpose
 
-    public TransVendorProductWarehouse() {
+    public TransVendorProductWarehouse() {}
+    public TransVendorProductWarehouse(int id, int vendorId, int productId,Date transactionsDate, int quantity, String description, double price){
+        this.id = id;
+        this.vendorId = vendorId;
+        this.productId = productId;
+        this.transactionsDate = transactionsDate;
+        this.quantity = quantity;
+        this.description = description;
+        this.warehouseId = warehouseId;
+        this.price = price;
     }
 
     public int getId() {

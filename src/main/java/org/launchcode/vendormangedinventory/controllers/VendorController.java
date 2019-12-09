@@ -147,7 +147,7 @@ public class VendorController {
     @RequestMapping(value="productId={productId}")
     public String getVendorsForproduct(@PathVariable("productId") int productId, Model model){
         Product product=productDao.findById(productId);
-        List<Vendor>vendors=vendorDao.findByProduct(product);
+        Set<Vendor>vendors=vendorDao.findByProduct(product);
         model.addAttribute("title", "vendors for the product with id= "+productId+ " name= "+product.getName());
         model.addAttribute("vendors", vendors);
         return "vendor/edit";
