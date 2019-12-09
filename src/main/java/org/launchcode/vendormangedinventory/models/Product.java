@@ -58,7 +58,6 @@ public class Product {
 
     public Product() {}
 
-
     public int getId() {
         return id;
     }
@@ -74,14 +73,6 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-
-    /*public File getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(File pictures) {
-        this.pictures = pictures;
-    }*/
 
     public int getQuantity() {
         return quantity;
@@ -138,4 +129,12 @@ public class Product {
     public void setPictures(File pictures) {
         this.pictures = pictures;
     }
+
+    public int  updatestockafterreception(int initialstock, int receivedStock){
+        return initialstock+receivedStock;
+    }
+    public int  updatestockafterretour(int initialstock, int receivedStock){
+        return initialstock-receivedStock;
+    }
+
 }
