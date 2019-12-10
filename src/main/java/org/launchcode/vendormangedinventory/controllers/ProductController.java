@@ -297,8 +297,6 @@ public class ProductController {
             return "product/retour";
         }
 
-<<<<<<< HEAD
-=======
     }
 
     @RequestMapping(value = "return", method = RequestMethod.GET)
@@ -314,7 +312,7 @@ public class ProductController {
         model.addAttribute("motifsOfRetour", motifsOfRetour);
         model.addAttribute("product", new Product());
         return "product/retourtovendor";
->>>>>>> retourrevisions
+
     }
 
     @RequestMapping(value = "return", method = RequestMethod.POST)
