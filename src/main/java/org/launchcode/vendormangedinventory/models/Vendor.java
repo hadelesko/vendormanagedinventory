@@ -1,6 +1,8 @@
 package org.launchcode.vendormangedinventory.models;
 
 ///import com.sun.imageio.plugins.jpeg.JPEG;
+
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 

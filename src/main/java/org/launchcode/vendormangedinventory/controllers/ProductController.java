@@ -101,6 +101,7 @@ public class ProductController {
                     //vendorListOfThisProduct.addAll(productDao.findByName(product.getName()).getVendorList());
                     vendorListOfThisProduct.add(currentVendor); // add the current vendor
 
+
                     //update in the database
                     productDao.findById(productId).setQuantity(newStock);  // Stock update
 
@@ -112,10 +113,11 @@ public class ProductController {
 
                     productDao.save(product);
                     productDao.findByName(product.getName()).getWarehouses().add(destinationWarehouse);
-                    productDao.findByName(product.getName()).getVendorList().add(currentVendor);
+                   // productDao.findByName(product.getName()).getVendorList().add(currentVendor);
 
                 }
-                int productId = productDao.findByName(product.getName()).getId();
+                product.setId(productDao.findByName(product.getName()).getId());
+                int productId = product.getId();//productDao.findByName(product.getName()).getId();
                 Date deliveryDate = new Date();
                 String description = "Reception of product '" + product.getName();
 

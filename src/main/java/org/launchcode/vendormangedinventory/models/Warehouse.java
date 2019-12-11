@@ -1,5 +1,7 @@
 package org.launchcode.vendormangedinventory.models;
 
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;

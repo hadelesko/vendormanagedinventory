@@ -12,8 +12,8 @@ public class Product_Warehouse {
     // This class is intended to catch the flow of product
     // and so allow the update of the stored product in the warehouse(quantity)
 
-    private long product_id;                // Which product or item is moving
-    private long warehouse_id;              // From or to which  product or item is been moving
+    private int product_id;                // Which product or item is moving
+    private int warehouse_id;              // From or to which  product or item is been moving
 
     //This can be the quantity received or produced(==> encreased the stock),
     // returned or consumed or destroyed (decrease the stock)
@@ -32,53 +32,7 @@ public class Product_Warehouse {
     private Date flow_date;
 
 
-     public Product_Warehouse(){}
-
-    public long getId() {
-        return id;
+    public Product_Warehouse() {
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
-    }
-
-    public long getWarehouse_id() {
-        return warehouse_id;
-    }
-
-    public void setWarehouse_id(long warehouse_id) {
-        this.warehouse_id = warehouse_id;
-    }
-
-    public int getQuantity_flowed() {
-        return quantity_flowed;
-    }
-
-    public void setQuantity_flowed(int quantity_flowed) {
-        this.quantity_flowed = quantity_flowed;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getFlow_date() {
-        return flow_date;
-    }
-
-    public void setFlow_date(Date flow_date) {
-        this.flow_date = flow_date;
-    }
 }
