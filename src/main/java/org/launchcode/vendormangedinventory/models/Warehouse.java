@@ -20,19 +20,19 @@ public class Warehouse {
     @ManyToMany
     private List<Product> products=new ArrayList<>();
 
-    @ManyToMany(cascade={CascadeType.ALL})
+    /*@ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Warehouse_Customer",
             joinColumns = {@JoinColumn(name = "warehouse_id") },
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
-    //@ManyToMany
-    private Set<Customer> customers; //=new HashSet<Customer>(); // no need to new HashSet Customer here
+            inverseJoinColumns = {@JoinColumn(name = "customer_id")})*/
+    @ManyToMany(cascade={CascadeType.ALL})
+    private Set<Customer> customers=new HashSet<Customer>(); // no need to new HashSet Customer here
 
     /*mappedBy="warehouseList"to refer to the join-table "vendor_warehouse" that means
     * when the vendor deliver product to the warehouse, this will be recorded
     *  in the join-table  "vendor_warehouse". to indicate the vendor deliver a product
     * to the warehouse */
     @ManyToMany(mappedBy="warehouseList")
-    private Set<Vendor> listVendors =new HashSet<>();
+    private Set<Vendor>listVendors =new HashSet<>();
 
     /*  @ManyToOne
     private Sale sale;*/

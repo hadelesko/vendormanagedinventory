@@ -1,3 +1,4 @@
+/*
 package org.launchcode.vendormangedinventory.models;
 
 
@@ -9,11 +10,13 @@ import java.util.Date;
 
 @Entity
 public class Warehouse_Customer {
-    /* To catch the flow of material between warehouse and customer
+    */
+/* To catch the flow of material between warehouse and customer
     We won't necessary create a controller for this class. This is destinated
     to record the flows of sending product to the customer or the
-    Retour of product from customer to the warehouse
-    */
+    RetourProduct of product from customer to the warehouse
+    *//*
+
 
     @Id
     @GeneratedValue
@@ -77,3 +80,4 @@ public class Warehouse_Customer {
     }
 }
 
+*/

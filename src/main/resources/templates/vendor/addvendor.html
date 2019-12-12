@@ -60,12 +60,14 @@
             <div>
                 <p>Select one product from the list bellow. If the received product is not in the list select <strong> DEFAULT</strong></p>
                 <select name ="productId">
+                    <option th:value="${notProductId}" selected="selected"><strong>N/A</strong></option>
                     <option th:each="product : ${products}"
                             th:text="${product.name}"
                             th:value="${product.id}"> Default Option i
                     </option>
                 </select>
-
+            </div>
+            <div>
                 <input type="submit"  class="btn btn-primary" value="Add new object"/>
 
             </div>

@@ -14,8 +14,6 @@ public class HomeController {
 
     @Autowired
     private VendorDao vendorDao;
-    @Autowired
-    private Vendor_ProductDao vendor_productDao;
 
     @Autowired
     private WarehouseDao warehouseDao;

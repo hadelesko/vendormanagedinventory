@@ -15,12 +15,12 @@ public class Customer {
     @Embedded
     private Address address;
 
-    @ManyToMany(cascade={CascadeType.ALL})
+/* @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(name="Customer_Product",
             joinColumns = { @JoinColumn(name = "customer_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id")})
-    //@ManyToMany
-    private List<Product>listBoughtProduct; //=new ArrayList<Product>();
+            inverseJoinColumns = { @JoinColumn(name = "product_id")})*/
+    @ManyToMany(cascade={CascadeType.ALL})
+    private List<Product>listBoughtProduct=new ArrayList<Product>();
 
     @ManyToMany(mappedBy="customers")
     private Set<Warehouse> warehouses=new HashSet<Warehouse>();

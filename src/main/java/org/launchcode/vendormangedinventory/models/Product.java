@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "product")
+@Access(value= AccessType.FIELD)
 public class Product {
     @Id
     @GeneratedValue
@@ -31,23 +33,23 @@ public class Product {
 
     //@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   /* @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="vendor_product",
                 joinColumns = {@JoinColumn(name="vendor_id")},
-                inverseJoinColumns = {@JoinColumn(name="product_id")})
-    //@OneToMany(mappedBy="product")
+                inverseJoinColumns = {@JoinColumn(name="product_id")})*/
+    @OneToMany
+    @JoinColumn(name="product_id")
     private Set<Vendor> vendorList=new HashSet<Vendor>();
 
     @ManyToMany(mappedBy = "listBoughtProduct")  // refers to the fields in customer-Table  'listBoughtProduct'
     private List<Customer> customers = new ArrayList<Customer>();
 
-   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+/*   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "product_warehouse",
             joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})
-    //@ManyToMany(mappedBy="products")
-    private List<Warehouse> warehouses=new ArrayList<>(); ///
-
+            inverseJoinColumns = {@JoinColumn(name = "warehouse_id")})*/
+    @ManyToMany(mappedBy="products")
+    private Set<Warehouse> warehouses=new HashSet<>(); ///
 
     //@Pattern(regexp = "[1-9]*\\.[0-9]{2}")
     @DecimalMin(value="1.00") @DecimalMax(value="99999.00",  message="must be at least $1 and can not be greater than $99999")
@@ -82,30 +84,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Set<Vendor> getVendorList() {
-        return vendorList;
-    }
-
-    public void setVendorList(Set<Vendor> vendorList) {
-        this.vendorList = vendorList;
-    }
-
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
-    }
-
-    public List<Warehouse> getWarehouses() {
-        return warehouses;
-    }
-
-    public void setWarehouses(List<Warehouse> warehouses) {
-        this.warehouses = warehouses;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -130,6 +108,15 @@ public class Product {
         this.pictures = pictures;
     }
 
+
+    public Set<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(Set<Vendor> vendorList) {
+        this.vendorList = vendorList;
+    }
+
     public int  updatestockafterreception(int initialstock, int receivedStock){
         return initialstock+receivedStock;
     }
@@ -137,4 +124,19 @@ public class Product {
         return initialstock-receivedStock;
     }
 
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public Set<Warehouse> getWarehouses() {
+        return warehouses;
+    }
+
+    public void setWarehouses(Set<Warehouse> warehouses) {
+        this.warehouses = warehouses;
+    }
 }

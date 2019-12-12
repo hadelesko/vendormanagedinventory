@@ -1,3 +1,4 @@
+/*
 
 package org.launchcode.vendormangedinventory.models;
 
@@ -10,10 +11,12 @@ import java.util.List;
 import java.util.Map;
 @Entity
 public class Vendor_Warehouse {
-    /*This class is designed to record the flow of material between
+    */
+/*This class is designed to record the flow of material between
      vendor(deliver product) and warehouse(reception and retour)==>
      Journal of the flows
-    * */
+    * *//*
+
     @Id
     @GeneratedValue
     private int id;
@@ -76,18 +79,26 @@ public class Vendor_Warehouse {
     }
 }
 
+*/
 /*    @ManyToOne
     private Product product;
     @NotNull
     private int quantity_delivered;*//*
+*/
+/*
 
+
+*//*
 
 */
 /*    @OneToMany
     private Warehouse destinationWarehouse;*//*
+*/
+/*
 
 
     public Vendor_Warehouse (){}
 
 }
 */
+

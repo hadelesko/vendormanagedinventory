@@ -1,3 +1,4 @@
+/*
 package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.*;
@@ -71,4 +72,6 @@ public class Customer_Product {
     public void setFlow_date(Date flow_date) {
         this.flow_date = flow_date;
     }
+
 }
+*/

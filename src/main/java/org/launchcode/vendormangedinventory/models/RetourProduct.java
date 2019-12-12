@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
-public class Retour {
+public class RetourProduct {
 
     @Id
     @GeneratedValue
@@ -20,6 +20,5 @@ public class Retour {
     private  Warehouse warehouse;
     private String description;
 
-    public Retour(){}
-
+    public RetourProduct(){}
 }*/
