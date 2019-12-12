@@ -265,12 +265,11 @@ public class ProductController {
         for (String r : reasons) {
             motifsOfRetour.add(r);
         }
-
         //productWarehouses.addAll(productDao.findById(productId).getWarehouseList());
-
         for (TransVendorProductWarehouse trans : vendor_product_warehouseDao.findByProductId(productId)) {
             productWarehouses.add(warehouseDao.findById(trans.getWarehouseId()));
         }
+
         //checking quantity returned and update of the stock if the condition quantity is satisfied
         if (quantityReturned <= productDao.findById(productId).getQuantity()
                 && productWarehouses.contains(selectedWarehouse)
@@ -286,8 +285,12 @@ public class ProductController {
             retour.setWarehouseId(sourceWarehouseId);
             retour.setPrice(selectedProduct.getPrice());
             vendor_product_warehouseDao.save(retour);
-
-            productDao.findById(productId).setQuantity(newstock);
+            Product thing = productDao.findById(productId);
+            thing.setQuantity(newstock);
+            productDao.save(thing);
+            List<Product> things = new ArrayList<>();
+            things.add(thing);
+            model.addAttribute("products", things);
             return "product/edit";
         } else {
             String title1 = quantityReturned <= productDao.findById(productId).getQuantity() ? "" : selectedProduct.getName() + ": max. quantity= " + selectedProduct.getQuantity() + ".  ";
