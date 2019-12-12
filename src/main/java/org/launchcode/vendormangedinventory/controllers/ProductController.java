@@ -25,8 +25,6 @@ public class ProductController {
 
     @Autowired
     private VendorDao vendorDao;
-    @Autowired
-    private Vendor_ProductDao vendor_productDao;
 
     @Autowired
     private WarehouseDao warehouseDao;
@@ -67,7 +65,7 @@ public class ProductController {
 
         //Set<Warehouse>warehouseListForTheReceivedProduct= (List<Warehouse>) product.getWarehouseList();
         Warehouse destinationWarehouse = warehouseDao.findById(destinationWarehouseId);
-        Set<Vendor> vendorListOfThisProduct = new HashSet<>();
+        //Set<Vendor> vendorListOfThisProduct = new HashSet<>();
         Set<Warehouse> warehousesListOfThisProduct = new HashSet<>();
 
         //String path="";
@@ -83,10 +81,12 @@ public class ProductController {
 
                 Vendor currentVendor = vendorDao.findById(id_of_vendor_of_this_product);
 
+                //Set<Warehouse> warehousesListOfThisProduct = new HashSet<>();
 
                 if (productDao.findByName(product.getName()) != null) { // Case product exists
                     int productId = productDao.findByName(product.getName()).getId();
                     int newStock = productDao.findByName(product.getName()).getQuantity() + product.getQuantity();
+
                     //update
                     //Update the warehouse list
                     //warehousesListOfThisProduct.addAll(productDao.findByName(product.getName()).getWarehouseList());
@@ -99,20 +99,26 @@ public class ProductController {
                     warehousesListOfThisProduct.add(destinationWarehouse); // add the current warehouse
                     //Update the vendor list of the product
                     //vendorListOfThisProduct.addAll(productDao.findByName(product.getName()).getVendorList());
+                    Set<Vendor> vendorListOfThisProduct=productDao.findById(productId).getVendorList();
                     vendorListOfThisProduct.add(currentVendor); // add the current vendor
 
                     //update in the database
                     productDao.findById(productId).setQuantity(newStock);  // Stock update
 
-                    //productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
-                    //productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
+
+                    productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
+                    productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
 
                 } else { //Product does not exist
 
 
                     productDao.save(product);
                     productDao.findByName(product.getName()).getWarehouses().add(destinationWarehouse);
-                    productDao.findByName(product.getName()).getVendorList().add(currentVendor);
+                    //productDao.findByName(product.getName()).getVendorList().add(currentVendor);
+                    int productId = productDao.findByName(product.getName()).getId();
+                    Set<Vendor> vendorListOfThisProduct=productDao.findById(productId).getVendorList();
+                    vendorListOfThisProduct.add(currentVendor);
+                    productDao.findById(productId).setVendorList(vendorListOfThisProduct);
 
                 }
                 int productId = productDao.findByName(product.getName()).getId();
@@ -130,7 +136,7 @@ public class ProductController {
                 delivery.setPrice(product.getPrice());
 
                 //product.getWarehouseList().add(destinationWarehouse);
-                vendor_productDao.save(delivery);
+                vendor_product_warehouseDao.save(delivery);
                 return "redirect:";
             }
         }
@@ -180,6 +186,7 @@ public class ProductController {
     }
 
 
+
     @RequestMapping(value = {"search", "find"}, method = RequestMethod.POST)
     public String postSearch(Model model, @RequestParam("searchCriteria") String searchCriteria,
                              @RequestParam("searchTermValue") String searchTermValue) {
@@ -227,7 +234,7 @@ public class ProductController {
         for (String r : reasons) {
             motifsOfRetour.add(r);
         }
-        model.addAttribute("title", "Retour of product to the vendor");
+        model.addAttribute("title", "RetourProduct of product to the vendor");
         model.addAttribute(new TransVendorProductWarehouse());
         model.addAttribute("products", productDao.findAll());
         model.addAttribute("vendors", vendorDao.findAll());
@@ -306,7 +313,7 @@ public class ProductController {
         for (String r : reasons) {
             motifsOfRetour.add(r);
         }
-        model.addAttribute("title", "Retour of product to the vendor");
+        model.addAttribute("title", "RetourProduct of product to the vendor");
         model.addAttribute(new TransVendorProductWarehouse());
         model.addAttribute("products", productDao.findAll());
         model.addAttribute("motifsOfRetour", motifsOfRetour);

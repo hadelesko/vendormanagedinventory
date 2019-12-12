@@ -1,4 +1,4 @@
-package org.launchcode.vendormangedinventory.models;
+/*package org.launchcode.vendormangedinventory.models;
 
 
 import javax.persistence.*;
@@ -21,11 +21,11 @@ public class Product_Warehouse {
     private int quantity_flowed;
 
 
-    /* Which kind of the flow is it; Reception, retour, destruction or consumption? The stock will be accordingly
+    *//* Which kind of the flow is it; Reception, retour, destruction or consumption? The stock will be accordingly
     be updated. The kind of the flow will be specified in the Controller where the
     business logic(method receive(Product), return(Product), product(newProduct), destroy(product)) will be developed
     This business method will update the existing stock of the product or the list of the products
-     */
+     *//*
     private String description;
 
     @Temporal(TemporalType.DATE) // Date to follow every flow
@@ -81,4 +81,4 @@ public class Product_Warehouse {
     public void setFlow_date(Date flow_date) {
         this.flow_date = flow_date;
     }
-}
+}*/

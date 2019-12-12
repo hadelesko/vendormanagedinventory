@@ -20,8 +20,6 @@ public class VendorController {
 
     @Autowired
     private VendorDao vendorDao;
-    @Autowired
-    private Vendor_ProductDao vendor_productDao;
 
     @Autowired
     private WarehouseDao warehouseDao;
@@ -42,7 +40,7 @@ public class VendorController {
         model.addAttribute(new Vendor());
         model.addAttribute(new Address());
         // To add a new vendor with new product i.e  both vendor and product are new
-       // model.addAttribute("isNotProductId", 0);
+        model.addAttribute("isNotProductId", 0);
         model.addAttribute("products", productDao.findAll());
         return "vendor/addvendor";
     }

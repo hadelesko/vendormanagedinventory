@@ -1,3 +1,4 @@
+/*
 package org.launchcode.vendormangedinventory.models;
 
 import javax.persistence.Entity;
@@ -89,3 +90,4 @@ public class Vendor_Product_Warehouse {
         this.description = description;
     }
 }
+*/

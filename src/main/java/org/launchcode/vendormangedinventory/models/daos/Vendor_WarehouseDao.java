@@ -1,4 +1,4 @@
-package org.launchcode.vendormangedinventory.models.daos;
+/*package org.launchcode.vendormangedinventory.models.daos;
 
 
 import org.launchcode.vendormangedinventory.models.Vendor_Warehouse;
@@ -9,4 +9,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface Vendor_WarehouseDao extends CrudRepository<Vendor_Warehouse, Integer>{
 
-}
+}*/
