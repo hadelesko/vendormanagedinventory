@@ -1,7 +1,5 @@
 package org.launchcode.vendormangedinventory.models;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -10,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "warehouse")
+@Access(value= AccessType.FIELD)
 public class Warehouse {
     @Id
     @GeneratedValue

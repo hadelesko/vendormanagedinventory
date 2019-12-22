@@ -5,9 +5,15 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
     <title th:text="${title}">Vendor managed inventory</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/accordion.css" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="js/accordion.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body class="container">
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" th:fragment="navigation_home">
@@ -56,5 +62,36 @@
         </h4>
     </nav>
 </div>
+
+
+    <ul class="accordion" th:fragment="navfoot">
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/}">Home</a></button>
+            <div class="accordion-panel">Home</div>
+        </li>
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/warehouse}">Warehouse</a></button>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/warehouse/add}">Add a Warehouse</a></button>
+            <div class="accordion-panel">Warehouse</div>
+        </li>
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/vendor}">Vendor</a></button>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/vendor/add}">Add a Vendor</a></button>
+            <div class="accordion-panel">Vendor</div>
+        </li>
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/product}">Product</a></button>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/product/add}">Add new product</a></button>
+            <div class="accordion-panel">Product</div>
+        </li>
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/customer}">Customer</a></button>
+            <div class="accordion-panel">Customer</div>
+        </li>
+        <li>
+            <button class="accordion-control"><a class="nav-link" th:href="@{/transactions}">Transactions</a></button>
+            <div class="accordion-panel">Transactions</div>
+        </li>
+    </ul>
 </body>
 </html>

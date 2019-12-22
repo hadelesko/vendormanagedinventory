@@ -1,16 +1,16 @@
 package org.launchcode.vendormangedinventory.models;
 
 ///import com.sun.imageio.plugins.jpeg.JPEG;
-<<<<<<< HEAD
+
 
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-=======
+
 /*import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;*/
 
->>>>>>> ear_reviews
+
 
 import javax.persistence.*;
 import java.util.HashSet;

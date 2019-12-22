@@ -101,29 +101,34 @@ public class ProductController {
                     //vendorListOfThisProduct.addAll(productDao.findByName(product.getName()).getVendorList());
                     Set<Vendor> vendorListOfThisProduct=productDao.findById(productId).getVendorList();
                     vendorListOfThisProduct.add(currentVendor); // add the current vendor
+                    Product thing=productDao.findById(productId);
 
 
                     //update in the database
-                    productDao.findById(productId).setQuantity(newStock);  // Stock update
 
+                    //productDao.findById(productId).setQuantity(newStock);  // Stock update
+                    //productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
+                    //productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
 
-                    productDao.findById(productId).setVendorList(vendorListOfThisProduct);  // Update the vendor list
-                    productDao.findById(productId).setWarehouses(warehousesListOfThisProduct);  //warehouse list update
+                    thing.setQuantity(newStock);
+                    thing.setVendorList(vendorListOfThisProduct);
+                    thing.setWarehouses(warehousesListOfThisProduct);
+                    productDao.save(thing);
 
                 } else { //Product does not exist
 
 
                     productDao.save(product);
                     productDao.findByName(product.getName()).getWarehouses().add(destinationWarehouse);
-<<<<<<< HEAD
+
                    // productDao.findByName(product.getName()).getVendorList().add(currentVendor);
-=======
+
                     //productDao.findByName(product.getName()).getVendorList().add(currentVendor);
                     int productId = productDao.findByName(product.getName()).getId();
                     Set<Vendor> vendorListOfThisProduct=productDao.findById(productId).getVendorList();
                     vendorListOfThisProduct.add(currentVendor);
                     productDao.findById(productId).setVendorList(vendorListOfThisProduct);
->>>>>>> ear_reviews
+
 
                 }
                 product.setId(productDao.findByName(product.getName()).getId());
@@ -314,6 +319,59 @@ public class ProductController {
         }
 
     }
+
+    @RequestMapping(value="remove", method = RequestMethod.GET)
+    public String deleteobject(Model model){
+        model.addAttribute("products", productDao.findAll());
+        model.addAttribute("title","Which product do you want to delete?");
+        return "product/remove";
+    }
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public void deleteproduct(Model model, @RequestParam("productId") int productId){
+        //List <Product>productList=new ArrayList<>();
+        //productDao.findAll().forEach(e->productList.add(e));
+        Product producttobedeleted=productDao.findById(productId);
+        productDao.delete(producttobedeleted);
+    }
+
+//==================================================================================================================================
+
+    @RequestMapping(value={"edit/productId={id}"}, method = RequestMethod.GET)
+    public String edit(Model model, @PathVariable("id")int id){
+        model.addAttribute("title", "Edit product with id="+id
+                +"  and name ="+ productDao.findById(id).getName()
+                +".  Make the change you want and save it");
+        model.addAttribute("product", productDao.findById(id));
+        model.addAttribute("vendors", vendorDao.findAll());
+        model.addAttribute("warehouses", warehouseDao.findAll());
+        model.addAttribute("id", id);
+        return "product/editor";
+
+    }
+    @RequestMapping(value={"edit/productId={id}"}, method = RequestMethod.POST)
+    public String editproceed(Model model, //@ModelAttribute @Valid Product product,
+                              @RequestParam("id") int id,
+                              @RequestParam("name") String name, @RequestParam("quantity")int quantity,
+                              @RequestParam("description") String description, @RequestParam("price")double price
+                              //@RequestParam("vendor") Vendor vendor, @RequestParam("warehouse")int warehouse)
+                               )
+                              {
+      Product product=productDao.findById(id);
+      product.setName(name);
+      product.setQuantity(quantity);
+      product.setDescription(description);
+      product.setPrice(price);
+
+      productDao.save(product);
+      List<Product>products=new ArrayList<>();
+      products.add(productDao.findById(id));
+      model.addAttribute("products",products);
+      model.addAttribute("title", "Edit product with id="+id
+                +"  and name ="+ productDao.findById(id).getName()
+                +"  that you have just changed");
+      return "product/edit";
+    }
+// ==============================================================================================================================
 
     @RequestMapping(value = "return", method = RequestMethod.GET)
     public String retuntovendor(Model model) {
