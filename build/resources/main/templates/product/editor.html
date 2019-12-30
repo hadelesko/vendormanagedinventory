@@ -9,7 +9,7 @@
 
     <strong><h2 th:replace="fragments :: title">Default Title</h2></strong>
 
-    <form method="POST" style="max-width:600px;" th:object="${product}" th:action="@{'/product/edit/productId='+${id}}">
+    <form method="POST" style="max-width:600px;" id="editform" th:object="${product}" th:action="@{'/product/edit/productId='+${id}}">
         <div class="form-group">
             <label th:for="name">Name</label>
             <input class ="form-control" th:field="*{name}" name="name" th:value="${product.name}"/>
@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
             <p><strong>Select the destination warehouse or the current warehouse who is receiving the product from the list bellow</strong></p>
-            <select name ="destinationWarehouse">
+            <select name ="destinationWarehouse" id="destinationWarehouse" onchange="preferedBrowser()">
 
                 <option th:each="warehouse : ${warehouses}"
                         th:text="${warehouse.name}"
@@ -58,6 +58,12 @@
         </div>
         <input type="submit"  class="btn btn-primary" value="Submit"/>
     </form>
+    <script>
+function preferedBrowser() {
+  prefer = document.getElementById("destinationWarehouse").value;
+  alert("You prefer deliver the product at the warehouse with id " + prefer);
+}
+</script>
 </div>
 
 <nav th:replace="fragments :: navigation_task"></nav>
